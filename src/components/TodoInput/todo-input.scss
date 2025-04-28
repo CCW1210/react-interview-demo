@@ -1,0 +1,38 @@
+// src/styles/components/todo-input.scss
+@import '../../styles/_variables.scss';
+
+.todo-input {
+  display: flex;
+  margin-bottom: $spacing;
+
+  &__field {
+    flex: 1;
+    padding: $spacing / 2;
+    border: 1px solid lighten($primary-color, 40%);
+    border-radius: 4px 0 0 4px;
+    outline: none;
+  }
+
+  &__btn {
+    padding: $spacing / 2 $spacing;
+    background: $primary-color;
+    color: #fff;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+
+    &:hover {
+      background: darken($primary-color, 10%);
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .todo-input__field {
+    font-size: 0.9rem;
+  }
+
+  .todo-input__btn {
+    padding: $spacing / 3 $spacing / 1.5;
+  }
+}
