@@ -1,0 +1,32 @@
+C:\Users\KHUser\Desktop\2025面試\華翰物產\react-todo-list
+├── .gitignore
+├── .prettierrc
+├── eslint.config.js
+├── index.html
+├── package-lock.json
+├── package.json
+├── project-structure.txt
+├── public
+|  └── vite.svg
+├── README.md
+├── src
+|  ├── api
+|  ├── App.scss
+|  ├── App.tsx
+|  ├── assets
+|  |  └── react.svg
+|  ├── components
+|  ├── index.scss
+|  ├── main.tsx
+|  ├── styles
+|  |  ├── components
+|  |  └── _variables.scss
+|  └── vite-env.d.ts
+├── tsconfig.app.json
+├── tsconfig.json
+├── tsconfig.node.json
+└── vite.config.ts
+
+directory: 987 file: 7603
+
+ignored: directory (11)
