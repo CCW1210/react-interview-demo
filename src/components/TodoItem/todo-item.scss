@@ -1,0 +1,28 @@
+// src/components/TodoItem/todo-item.scss
+@import '../../styles/_variables';
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  padding: $spacing / 2;
+  border-bottom: 1px solid #eee;
+
+  &.done .todo-item__text {
+    text-decoration: line-through;
+    color: #999;
+  }
+
+  &__text {
+    margin-left: $spacing / 2;
+    flex: 1;
+  }
+
+  &__remove {
+    background: transparent;
+    border: none;
+    font-size: 1.2rem;
+    color: #e53935;
+    cursor: pointer;
+    padding: 0 $spacing / 4;
+  }
+}
