@@ -1,4 +1,4 @@
-C:\Users\KHUser\Desktop\2025面試\華翰物產\react-todo-list
+react-todo-list
 ├── .gitignore
 ├── .prettierrc
 ├── eslint.config.js
@@ -11,15 +11,24 @@ C:\Users\KHUser\Desktop\2025面試\華翰物產\react-todo-list
 ├── README.md
 ├── src
 |  ├── api
+|  |  └── storage.ts
 |  ├── App.scss
 |  ├── App.tsx
 |  ├── assets
 |  |  └── react.svg
 |  ├── components
+|  |  ├── TodoInput
+|  |  |  ├── TodoInput.scss
+|  |  |  └── TodoInput.tsx
+|  |  ├── TodoItem
+|  |  |  ├── TodoItem.scss
+|  |  |  └── TodoItem.tsx
+|  |  └── TodoList
+|  |     ├── TodoList.scss
+|  |     └── TodoList.tsx
 |  ├── index.scss
 |  ├── main.tsx
 |  ├── styles
-|  |  ├── components
 |  |  └── _variables.scss
 |  └── vite-env.d.ts
 ├── tsconfig.app.json
@@ -27,6 +36,6 @@ C:\Users\KHUser\Desktop\2025面試\華翰物產\react-todo-list
 ├── tsconfig.node.json
 └── vite.config.ts
 
-directory: 987 file: 7603
+directory: 1037 file: 7673
 
 ignored: directory (11)

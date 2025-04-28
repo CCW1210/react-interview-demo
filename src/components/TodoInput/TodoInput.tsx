@@ -1,6 +1,6 @@
 // src/components/TodoInput.tsx
 import React, { useState, FormEvent } from 'react';
-import '../styles/components/todo-input.scss';
+import './TodoInput.scss';
 
 interface TodoInputProps {
   onAdd: (text: string) => void;
@@ -22,12 +22,12 @@ const TodoInput: React.FC<TodoInputProps> = ({ onAdd }) => {
       <input
         type="text"
         className="todo-input__field"
-        placeholder="輸入待辦事項"
+        placeholder="輸入待辦事�?"
         value={text}
         onChange={e => setText(e.target.value)}
       />
       <button type="submit" className="todo-input__btn">
-        新增
+        ?��?
       </button>
     </form>
   );

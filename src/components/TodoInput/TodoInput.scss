@@ -1,5 +1,5 @@
 // src/styles/components/todo-input.scss
-@import '../_variables';
+@import '../../styles/_variables.scss';
 
 .todo-input {
   display: flex;
@@ -24,5 +24,15 @@
     &:hover {
       background: darken($primary-color, 10%);
     }
+  }
+}
+
+@media (max-width: 400px) {
+  .todo-input__field {
+    font-size: 0.9rem;
+  }
+
+  .todo-input__btn {
+    padding: $spacing / 3 $spacing / 1.5;
   }
 }

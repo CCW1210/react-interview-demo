@@ -1,7 +1,7 @@
 // src/components/TodoList/TodoList.tsx
 import React, { useState } from 'react';
 import TodoItem, { Todo } from '../TodoItem/TodoItem';
-import './todo-list.scss';
+import './TodoList.scss';
 
 interface TodoListProps {
   todos: Todo[];
@@ -22,19 +22,19 @@ const TodoList: React.FC<TodoListProps> = ({ todos, onToggle, onRemove }) => {
           className={filter === 'all' ? 'active' : ''}
           onClick={() => setFilter('all')}
         >
-          全部
+          ?�部
         </button>
         <button
           className={filter === 'todo' ? 'active' : ''}
           onClick={() => setFilter('todo')}
         >
-          進行中
+          ?��?�?
         </button>
         <button
           className={filter === 'done' ? 'active' : ''}
           onClick={() => setFilter('done')}
         >
-          已完成
+          已�???
         </button>
       </div>
       <ul className="todo-list__items">

@@ -1,6 +1,6 @@
 // src/components/TodoItem/TodoItem.tsx
 import React from 'react';
-import './todo-item.scss';
+import './TodoItem.scss';
 
 export interface Todo {
   id: number;
@@ -29,7 +29,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, onToggle, onRemove }) => {
         className="todo-item__remove"
         onClick={() => onRemove(todo.id)}
       >
-        ×
+        ?
       </button>
     </li>
   );
