@@ -1,5 +1,5 @@
-/* src/app.scss */
-@import './styles/_variables.scss';
+// src/App.scss
+@import './styles/variables';
 
 .app-container {
   max-width: 480px;
@@ -20,9 +20,9 @@
   .app-container {
     margin: 1rem;
     padding: $spacing / 2;
-  }
 
-  .app-container h1 {
-    font-size: 1.5rem;
+    h1 {
+      font-size: 1.5rem;
+    }
   }
 }

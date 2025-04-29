@@ -1,4 +1,5 @@
-react-todo-list
+C:\Users\KHUser\Desktop\2025面試\華翰物產\react-todo-list
+├── .eslintrc.js
 ├── .gitignore
 ├── .prettierrc
 ├── eslint.config.js
@@ -31,11 +32,12 @@ react-todo-list
 |  ├── styles
 |  |  └── _variables.scss
 |  └── vite-env.d.ts
+├── stylelint.config.js
 ├── tsconfig.app.json
 ├── tsconfig.json
 ├── tsconfig.node.json
 └── vite.config.ts
 
-directory: 1037 file: 7673
+directory: 1704 file: 10316
 
-ignored: directory (11)
+ignored: directory (35)

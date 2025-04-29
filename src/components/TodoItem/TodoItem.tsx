@@ -1,5 +1,4 @@
 // src/components/TodoItem/TodoItem.tsx
-import React from 'react';
 import './TodoItem.scss';
 
 export interface Todo {
@@ -10,29 +9,26 @@ export interface Todo {
 
 interface TodoItemProps {
   todo: Todo;
-  onToggle: (id: number) => void;
-  onRemove: (id: number) => void;
+  onToggle(id: number): void;
+  onRemove(id: number): void;
 }
 
-const TodoItem: React.FC<TodoItemProps> = ({ todo, onToggle, onRemove }) => {
+export function TodoItem({ todo, onToggle, onRemove }: TodoItemProps) {
   return (
-    <li className={`todo-item${todo.done ? ' done' : ''}`}>
+    <li className={todo.done ? 'done' : ''}>
       <label>
         <input
           type="checkbox"
           checked={todo.done}
           onChange={() => onToggle(todo.id)}
         />
-        <span className="todo-item__text">{todo.text}</span>
+        <span className="text">{todo.text}</span>
       </label>
-      <button
-        className="todo-item__remove"
-        onClick={() => onRemove(todo.id)}
-      >
-        ?
+      <button className="remove" onClick={() => onRemove(todo.id)}>
+        ×
       </button>
     </li>
   );
-};
+}
 
 export default TodoItem;

@@ -1,11 +1,11 @@
 // src/App.tsx
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TodoInput from './components/TodoInput/TodoInput';
 import TodoList from './components/TodoList/TodoList';
 import { loadTodos, saveTodos, Todo } from './api/storage';
-import './app.scss';
+import './App.scss';
 
-const App: React.FC = () => {
+function App() {
   const [todos, setTodos] = useState<Todo[]>([]);
 
   useEffect(() => {
@@ -16,18 +16,18 @@ const App: React.FC = () => {
     saveTodos(todos);
   }, [todos]);
 
-  const handleAdd = (text: string) => {
+  function handleAdd(text: string) {
     const newTodo: Todo = { id: Date.now(), text, done: false };
     setTodos([newTodo, ...todos]);
-  };
+  }
 
-  const handleToggle = (id: number) => {
-    setTodos(todos.map(t => (t.id === id ? { ...t, done: !t.done } : t)));
-  };
+  function handleToggle(id: number) {
+    setTodos(todos.map((t) => (t.id === id ? { ...t, done: !t.done } : t)));
+  }
 
-  const handleRemove = (id: number) => {
-    setTodos(todos.filter(t => t.id !== id));
-  };
+  function handleRemove(id: number) {
+    setTodos(todos.filter((t) => t.id !== id));
+  }
 
   return (
     <div className="app-container">
@@ -36,6 +36,6 @@ const App: React.FC = () => {
       <TodoList todos={todos} onToggle={handleToggle} onRemove={handleRemove} />
     </div>
   );
-};
+}
 
 export default App;
