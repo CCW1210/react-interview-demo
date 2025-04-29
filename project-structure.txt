@@ -43,6 +43,6 @@ C:\Users\KHUser\Desktop\2025面試\Welhunt\react-interview
 ├── tsconfig.node.json
 └── vite.config.ts
 
-directory: 1743 file: 10466
+directory: 1745 file: 10472
 
 ignored: directory (34)

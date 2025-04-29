@@ -7,11 +7,11 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "lint": "eslint \"src/**/*.ts\" \"src/**/*.tsx\" --fix --no-ignore",
     "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,scss,css,json,md}'",
+    "lint": "eslint \"src/**/*.ts\" \"src/**/*.tsx\" --fix --no-ignore",
     "stylelint": "stylelint 'src/**/*.{css,scss}' --fix",
     "gen:tree": "npx tree-cli . -a -l 5 --ignore node_modules --ignore .git -o project-structure.txt",
-    "validate": "eslint . --ext .js,.jsx,.ts,.tsx --fix && stylelint src/**/*.{css,scss} --fix && prettier --write src/**/*.{js,jsx,ts,tsx,scss,css,json,md} && npx tree-cli . -a -l 5 --ignore node_modules --ignore .git -o project-structure.txt"
+    "validate": "npm run lint && npm run stylelint && npm run gen:tree"
   },
   "dependencies": {
     "react": "^19.0.0",

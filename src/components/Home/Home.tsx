@@ -9,11 +9,11 @@ interface MenuItem {
 }
 
 const items: readonly MenuItem[] = [
-  { path: "/todoList", label: "Todo List 清單管理器（初階）" },
-  { path: "/weatherDashboard", label: "天氣預報看板（中階 I）" },
-  { path: "/movieSearch", label: "電影搜尋與收藏（中階 II）" },
-  { path: "/expenseTracker", label: "收支管理／金流紀錄（進階 I）" },
-  { path: "/chatApp", label: "即時聊天室（進階 II）" },
+  { path: "/todoList", label: "Todo List清單管理器" },
+  { path: "/weatherDashboard", label: "天氣預報看板" },
+  { path: "/movieSearch", label: "電影搜尋與收藏）" },
+  { path: "/expenseTracker", label: "收支管理／金流紀錄" },
+  { path: "/chatApp", label: "即時聊天室" },
 ];
 
 export function Home(): JSX.Element {
