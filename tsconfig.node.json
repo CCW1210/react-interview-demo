@@ -1,26 +1,30 @@
+// tsconfig.node.json
 {
   "compilerOptions": {
+    // 啟用 Project References 必備
+    "composite": true,
+
+    // 儲存增量編譯資訊
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
+
+    // 產生聲明檔，但不輸出 .js
+    "declaration": true,
+    "emitDeclarationOnly": true,
+
     "target": "ES2022",
     "lib": ["ES2023"],
     "module": "ESNext",
     "skipLibCheck": true,
-
-    /* Bundler 模式 */
     "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
     "isolatedModules": true,
     "moduleDetection": "force",
 
-    /* 嚴格檢查 */
+    // 嚴格檢查
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true,
-
-    /* 必要的設定 */
-    "composite": true
+    "noUncheckedSideEffectImports": true
   },
   "include": ["vite.config.ts"]
 }

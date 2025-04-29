@@ -1,30 +1,33 @@
 // tsconfig.app.json
 {
   "compilerOptions": {
+    // 啟用 Project References 必備
+    "composite": true,
+
+    // 儲存增量編譯資訊
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+
+    // 產生 .d.ts 聲明檔，但不輸出 .js
+    "declaration": true,
+    "emitDeclarationOnly": true,
+
+    // 其餘維持你原本的設定
     "target": "ES2020",
     "useDefineForClassFields": true,
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
-
-    /* Bundler 模式 */
     "moduleResolution": "bundler",
     "isolatedModules": true,
     "moduleDetection": "force",
-
-    /* JSX */
     "jsx": "react-jsx",
 
-    /* 嚴格檢查 */
+    // 嚴格檢查
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true,
-
-    /* TypeScript project refs 要求 */
-    "composite": true
+    "noUncheckedSideEffectImports": true
   },
   "include": ["src"]
 }
