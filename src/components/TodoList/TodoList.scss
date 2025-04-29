@@ -1,5 +1,5 @@
 // src/components/TodoList/TodoList.scss
-@import '../../styles/variables';
+@import "../../styles/variables";
 
 .container {
   .filters {
@@ -26,7 +26,7 @@
   }
 }
 
-@media (max-width: 400px) {
+@media (width <= 400px) {
   .filters button {
     padding: $spacing / 5 $spacing / 3;
     font-size: 0.85rem;

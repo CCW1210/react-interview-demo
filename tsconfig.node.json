@@ -6,19 +6,21 @@
     "module": "ESNext",
     "skipLibCheck": true,
 
-    /* Bundler mode */
+    /* Bundler 模式 */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "isolatedModules": true,
     "moduleDetection": "force",
-    "noEmit": true,
 
-    /* Linting */
+    /* 嚴格檢查 */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    /* 必要的設定 */
+    "composite": true
   },
   "include": ["vite.config.ts"]
 }

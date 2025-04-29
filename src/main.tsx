@@ -1,10 +1,17 @@
 // src/main.tsx
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import './index.scss'; // ← 確認這行存在
+import "./index.scss";
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+import React from "react";
+import ReactDOM from "react-dom/client";
+
+import App from "./App";
+
+const rootElement = document.getElementById("root");
+if (!rootElement) {
+  throw new Error("Failed to find root element");
+}
+
+ReactDOM.createRoot(rootElement).render(
   <React.StrictMode>
     <App />
   </React.StrictMode>

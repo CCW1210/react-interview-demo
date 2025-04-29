@@ -1,0 +1,28 @@
+﻿@import "../../styles/_variables";
+
+.home {
+  padding: 2rem;
+
+  h1 {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .list {
+    list-style: none;
+    padding: 0;
+
+    li {
+      margin: 0.5rem 0;
+
+      a {
+        text-decoration: none;
+        color: -color;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

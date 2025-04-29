@@ -1,13 +1,14 @@
 // src/components/TodoInput/TodoInput.tsx
-import React, { useState } from 'react';
-import './TodoInput.scss';
+import "./TodoInput.scss";
+
+import React, { useState } from "react";
 
 interface TodoInputProps {
   onAdd(text: string): void;
 }
 
 export function TodoInput({ onAdd }: TodoInputProps) {
-  const [text, setText] = useState('');
+  const [text, setText] = useState("");
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -16,7 +17,7 @@ export function TodoInput({ onAdd }: TodoInputProps) {
       return;
     }
     onAdd(trimmed);
-    setText('');
+    setText("");
   }
 
   return (

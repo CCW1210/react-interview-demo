@@ -1,8 +1,7 @@
-C:\Users\KHUser\Desktop\2025面試\華翰物產\react-todo-list
-├── .eslintrc.js
+C:\Users\KHUser\Desktop\2025面試\Welhunt\react-interview
+├── .eslintrc.cjs
 ├── .gitignore
 ├── .prettierrc
-├── eslint.config.js
 ├── index.html
 ├── package-lock.json
 ├── package.json
@@ -18,6 +17,9 @@ C:\Users\KHUser\Desktop\2025面試\華翰物產\react-todo-list
 |  ├── assets
 |  |  └── react.svg
 |  ├── components
+|  |  ├── Home
+|  |  |  ├── Home.scss
+|  |  |  └── Home.tsx
 |  |  ├── TodoInput
 |  |  |  ├── TodoInput.scss
 |  |  |  └── TodoInput.tsx
@@ -29,15 +31,18 @@ C:\Users\KHUser\Desktop\2025面試\華翰物產\react-todo-list
 |  |     └── TodoList.tsx
 |  ├── index.scss
 |  ├── main.tsx
+|  ├── pages
+|  |  └── TodoPage.tsx
 |  ├── styles
 |  |  └── _variables.scss
 |  └── vite-env.d.ts
 ├── stylelint.config.js
 ├── tsconfig.app.json
 ├── tsconfig.json
+├── tsconfig.json.bak
 ├── tsconfig.node.json
 └── vite.config.ts
 
-directory: 1704 file: 10316
+directory: 1726 file: 10430
 
-ignored: directory (35)
+ignored: directory (34)

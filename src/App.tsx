@@ -1,40 +1,32 @@
-// src/App.tsx
-import React, { useState, useEffect } from 'react';
-import TodoInput from './components/TodoInput/TodoInput';
-import TodoList from './components/TodoList/TodoList';
-import { loadTodos, saveTodos, Todo } from './api/storage';
-import './App.scss';
+import "./App.scss";
 
-function App() {
-  const [todos, setTodos] = useState<Todo[]>([]);
+import { JSX } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-  useEffect(() => {
-    setTodos(loadTodos());
-  }, []);
+import Home from "./components/Home/Home";
+import TodoPage from "./pages/TodoPage";
 
-  useEffect(() => {
-    saveTodos(todos);
-  }, [todos]);
-
-  function handleAdd(text: string) {
-    const newTodo: Todo = { id: Date.now(), text, done: false };
-    setTodos([newTodo, ...todos]);
-  }
-
-  function handleToggle(id: number) {
-    setTodos(todos.map((t) => (t.id === id ? { ...t, done: !t.done } : t)));
-  }
-
-  function handleRemove(id: number) {
-    setTodos(todos.filter((t) => t.id !== id));
-  }
-
+export function App(): JSX.Element {
   return (
-    <div className="app-container">
-      <h1>Todo List</h1>
-      <TodoInput onAdd={handleAdd} />
-      <TodoList todos={todos} onToggle={handleToggle} onRemove={handleRemove} />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/todoList" element={<TodoPage />} />
+        <Route
+          path="/weatherDashboard"
+          element={<div>天氣預報看板，敬請期待</div>}
+        />
+        <Route
+          path="/movieSearch"
+          element={<div>電影搜尋與收藏，敬請期待</div>}
+        />
+        <Route
+          path="/expenseTracker"
+          element={<div>收支管理／金流紀錄，敬請期待</div>}
+        />
+        <Route path="/chatApp" element={<div>即時聊天室，敬請期待</div>} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

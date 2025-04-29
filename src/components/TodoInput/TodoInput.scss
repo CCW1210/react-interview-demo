@@ -1,5 +1,5 @@
 // src/components/TodoInput/TodoInput.scss
-@import '../../styles/variables';
+@import "../../styles/variables";
 
 .container {
   display: flex;
@@ -27,7 +27,7 @@
   }
 }
 
-@media (max-width: 400px) {
+@media (width <= 400px) {
   .field {
     font-size: 0.9rem;
   }

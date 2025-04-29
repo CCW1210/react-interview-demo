@@ -7,15 +7,15 @@ export interface Todo {
   done: boolean;
 }
 
-const STORAGE_KEY = 'todo-list';
+const STORAGE_KEY = "todo-list";
 
 /** 從 localStorage 載入 Todo 陣列 */
 export function loadTodos(): Todo[] {
   try {
     const data = localStorage.getItem(STORAGE_KEY);
     return data ? (JSON.parse(data) as Todo[]) : [];
-  } catch (err) {
-    console.error('loadTodos error:', err);
+  } catch {
+    // 失敗就回傳空陣列
     return [];
   }
 }
@@ -24,7 +24,7 @@ export function loadTodos(): Todo[] {
 export function saveTodos(todos: Todo[]): void {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
-  } catch (err) {
-    console.error('saveTodos error:', err);
+  } catch {
+    // 忽略儲存失敗
   }
 }
