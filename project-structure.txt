@@ -74,6 +74,8 @@ C:\Users\KHUser\Desktop\2025面試\Welhunt\react-interview
 |  |  └── movieSlice.ts
 |  ├── styles
 |  |  └── _variables.scss
+|  ├── test-utils
+|  |  └── renderWithProviders.tsx
 |  └── vite-env.d.ts
 ├── stylelint.config.js
 ├── tsconfig.app.json
@@ -81,6 +83,6 @@ C:\Users\KHUser\Desktop\2025面試\Welhunt\react-interview
 ├── tsconfig.node.json
 └── vite.config.ts
 
-directory: 2994 file: 16753
+directory: 3008 file: 16806
 
 ignored: directory (75)

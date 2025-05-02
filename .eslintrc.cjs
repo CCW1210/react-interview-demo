@@ -7,19 +7,18 @@ module.exports = {
     ecmaVersion: 2021,
     sourceType: "module",
     ecmaFeatures: { jsx: true },
-    // **不指定** project，避免所有 type-aware 錯誤
   },
 
   env: {
     browser: true,
     es2021: true,
     node: true,
+    jest: true,
   },
 
   extends: [
     "airbnb",
     "airbnb/hooks",
-    // 不使用 airbnb-typescript，也不載入任何 type-aware 規則
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
   ],
@@ -33,41 +32,48 @@ module.exports = {
   ],
 
   rules: {
-    // 用核心 ESLint 的 dot-notation，關閉 TS 版版本
     "dot-notation": ["error"],
     "@typescript-eslint/dot-notation": "off",
-
-    // React 17+ 不需顯式 import React
     "react/react-in-jsx-scope": "off",
-
-    // 排版與格式化
     "prettier/prettier": ["error"],
-
-    // JSX 副檔名警告
     "react/jsx-filename-extension": ["warn", { extensions: [".tsx", ".jsx"] }],
-
-    // 關閉 import 副檔名檢查
     "import/extensions": "off",
-
-    // 禁用 console.log
     "no-console": "warn",
-
-    // 自動排序 import
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
     "import/order": "off",
-
-    // TS 語法檢查：禁用未使用變數規則，改用 TS 版
     "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
     "no-unused-vars": "off",
+    "no-param-reassign": [
+      "error",
+      { props: true, ignorePropertyModificationsFor: ["state"] },
+    ],
   },
 
   overrides: [
     {
-      // 針對設定檔關閉依賴檢查
+      // 設定檔範圍
       files: ["vite.config.ts", "*.config.{js,ts}"],
       rules: {
         "import/no-extraneous-dependencies": "off",
+      },
+    },
+    {
+      // 所有 test 檔、setupTests.ts、test‐utils 皆可使用 devDependencies，
+      // 且關閉空函式、無用 constructor、class-methods-use-this 規則
+      files: [
+        "**/*.test.ts",
+        "**/*.test.tsx",
+        "src/setupTests.ts",
+        "src/test-utils/**/*.{ts,tsx}",
+      ],
+      rules: {
+        "import/no-extraneous-dependencies": "off",
+        "@typescript-eslint/no-empty-function": "off",
+        "class-methods-use-this": "off",
+        "no-useless-constructor": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "func-names": "off",
       },
     },
   ],

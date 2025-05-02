@@ -11,7 +11,7 @@
     "lint": "eslint \"src/**/*.ts\" \"src/**/*.tsx\" --fix --no-ignore",
     "stylelint": "stylelint 'src/**/*.{css,scss}' --fix",
     "tree": "npx tree-cli . -a -l 5 --ignore node_modules --ignore .git -o project-structure.txt",
-    "validate": "npm run lint && npm run stylelint && npm run gen:tree",
+    "validate": "npm run lint && npm run stylelint && npm run tree",
     "test": "jest --passWithNoTests --watch",
     "test:ci": "jest --passWithNoTests --runInBand",
     "cypress:open": "cypress open",
@@ -23,7 +23,8 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-redux": "^9.2.0",
-    "react-router-dom": "^7.5.3"
+    "react-router-dom": "^7.5.3",
+    "redux-thunk": "^3.1.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.22.0",
@@ -56,6 +57,7 @@
     "jest-environment-jsdom": "^29.7.0",
     "mock-socket": "^9.3.1",
     "prettier": "^3.5.3",
+    "redux-mock-store": "^1.5.5",
     "sass": "^1.87.0",
     "stylelint": "^16.19.1",
     "stylelint-config-standard-scss": "^14.0.0",

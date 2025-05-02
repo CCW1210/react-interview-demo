@@ -1,5 +1,3 @@
-// src/store/expenseSlice.ts
-
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // 一筆支出的資料結構
@@ -7,24 +5,31 @@ export interface ExpenseItem {
   id: string;
   description: string;
   amount: number;
+  category: string;
+  date: string;
 }
 
-// Slice 的 State 型別，一定要匯出
+// Slice 的 State 型別
 export interface ExpenseState {
   list: ExpenseItem[];
+  filterCategory: string;
 }
 
 // 初始狀態
 const initialState: ExpenseState = {
   list: [],
+  filterCategory: "all",
 };
 
 const expenseSlice = createSlice({
   name: "expenses",
   initialState,
   reducers: {
-    addExpense(state, action: PayloadAction<ExpenseItem>) {
-      state.list.push(action.payload);
+    addExpense(state, action: PayloadAction<Omit<ExpenseItem, "id">>) {
+      state.list.push({
+        id: Date.now().toString(),
+        ...action.payload,
+      });
     },
     removeExpense(state, action: PayloadAction<string>) {
       state.list = state.list.filter((exp) => exp.id !== action.payload);
@@ -32,12 +37,13 @@ const expenseSlice = createSlice({
     clearExpenses(state) {
       state.list = [];
     },
+    setFilterCategory(state, action: PayloadAction<string>) {
+      state.filterCategory = action.payload;
+    },
   },
 });
 
-// 匯出 actions
-export const { addExpense, removeExpense, clearExpenses } =
+export const { addExpense, removeExpense, clearExpenses, setFilterCategory } =
   expenseSlice.actions;
 
-// 匯出 reducer
 export default expenseSlice.reducer;

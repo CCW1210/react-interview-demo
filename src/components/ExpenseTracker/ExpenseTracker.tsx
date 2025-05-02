@@ -1,5 +1,3 @@
-// src/components/ExpenseTracker/ExpenseTracker.tsx
-
 import "./ExpenseTracker.scss";
 
 import type { JSX } from "react";
@@ -10,7 +8,7 @@ import { Link } from "react-router-dom";
 import type { AppDispatch, RootState } from "../../store";
 import {
   addExpense,
-  Expense,
+  ExpenseItem,
   removeExpense,
   setFilterCategory,
 } from "../../store/expenseSlice";
@@ -121,7 +119,7 @@ export default function ExpenseTracker(): JSX.Element {
       </div>
 
       <ul className="expense-tracker-list">
-        {filtered.map((exp: Expense) => (
+        {filtered.map((exp: ExpenseItem) => (
           <li key={exp.id} className="expense-tracker-item">
             <span className="expense-tracker-date">{exp.date}</span>
             <span className="expense-tracker-desc">{exp.description}</span>

@@ -1,74 +1,60 @@
-// src/components/MovieSearch/MovieSearch.tsx
-
 import "./MovieSearch.scss";
 
-import type { JSX } from "react";
-import React, { useEffect, useState } from "react";
+import { JSX, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import type { AppDispatch, RootState } from "../../store";
-import { fetchMovies, setQuery } from "../../store/movieSlice";
+import { AppDispatch, RootState } from "../../store";
+import type { Movie } from "../../store/movieSlice";
+import { getMovies, setQuery } from "../../store/movieSlice";
 
 export default function MovieSearch(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
   const { query, results, status, error } = useSelector(
-    (state: RootState) => state.movies
+    (s: RootState) => s.movies
   );
   const [input, setInput] = useState<string>(query);
 
+  // 當 query 更新時自動抓一次
   useEffect(() => {
     if (query) {
-      dispatch(fetchMovies(query));
+      dispatch(getMovies(query));
     }
   }, [dispatch, query]);
 
-  function handleSearch(e: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     dispatch(setQuery(input));
+    dispatch(getMovies(input));
   }
 
   return (
     <section className="movie-search">
-      <Link to="/" className="back-home-link">
+      <Link className="back-home-link" to="/">
         ← 返回首頁
       </Link>
       <h2 className="movie-search-title">電影搜尋（SampleAPIs 版）</h2>
-
-      <form className="movie-search-form" onSubmit={handleSearch}>
+      <form className="movie-search-form" onSubmit={handleSubmit}>
         <input
-          type="text"
           className="movie-search-input"
+          placeholder="輸入電影關鍵字"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="輸入電影關鍵字"
         />
-        <button type="submit" className="movie-search-button">
+        <button className="movie-search-button" type="submit">
           搜尋
         </button>
       </form>
-
-      {status === "loading" && <p>載入中…</p>}
-      {status === "failed" && <p className="movie-search-error">{error}</p>}
-
       <div className="movie-search-grid">
-        {results.map((movie) => (
-          <article key={movie.id} className="movie-search-card">
-            {movie.posterURL ? (
-              <img
-                className="movie-search-poster"
-                src={movie.posterURL}
-                alt={movie.title}
-              />
-            ) : (
-              <div className="movie-search-no-poster">無海報</div>
-            )}
-
-            <h3 className="movie-search-name">{movie.title}</h3>
-            <p className="movie-search-release">{movie.releaseDate}</p>
-            <p className="movie-search-overview">{movie.description}</p>
-          </article>
-        ))}
+        {status === "loading" && <p>載入中...</p>}
+        {status === "failed" && <p>錯誤：{error}</p>}
+        {status === "succeeded" &&
+          results.map((m: Movie) => (
+            <article key={m.id} className="movie-search-card">
+              <h3>{m.title}</h3>
+              <p>{m.description}</p>
+            </article>
+          ))}
       </div>
     </section>
   );

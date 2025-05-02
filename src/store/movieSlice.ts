@@ -1,8 +1,9 @@
 // src/store/movieSlice.ts
 
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import type { RootState } from "./index";
+
 import { searchMovies } from "../api/movie"; // 改為正確的命名匯入
+import type { RootState } from "./index";
 
 // 定義 Movie 介面
 export interface Movie {

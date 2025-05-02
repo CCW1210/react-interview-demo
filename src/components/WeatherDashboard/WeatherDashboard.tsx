@@ -1,93 +1,81 @@
-import React, { useState, useEffect } from "react";
-import { fetchCoordinates, fetchFiveDayForecast } from "../../api/weather";
+import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "./WeatherDashboard.scss";
 
-interface ForecastDay {
-  dt: number;
-  temp_max: number;
-  temp_min: number;
-  weather: { id: number; description: string }[];
-}
+import type { DailyForecast } from "../../api/weather";
+import { fetchCoordinates, fetchFiveDayForecast } from "../../api/weather";
 
-const WeatherDashboard: React.FC = () => {
-  // 預設自動載入城市改為高雄
-  const [city, setCity] = useState<string>("Kaohsiung");
-  const [list, setList] = useState<ForecastDay[]>([]);
-  const [error, setError] = useState<string | null>(null);
+export default function WeatherDashboard() {
+  const defaultCity = "Taipei";
+  const [city, setCity] = useState(defaultCity);
+  const [list, setList] = useState<DailyForecast[]>([]);
+  const [error, setError] = useState("");
 
-  // 將 Raw API 回傳的資料轉換為 ForecastDay
-  const load = async () => {
+  const load = useCallback(async () => {
     try {
       const { lat, lon } = await fetchCoordinates(city);
-      // 強制轉型為 any[]，以繞過 DailyForecast 型別不匹配
-      const raw = (await fetchFiveDayForecast(lat, lon)) as any[];
-      const data: ForecastDay[] = raw.map((day) => ({
-        dt: day.dt,
-        temp_max: day.temp.max,
-        temp_min: day.temp.min,
-        weather: day.weather,
-      }));
+      const data = await fetchFiveDayForecast(lat, lon);
       setList(data);
-      setError(null);
+      setError("");
     } catch (err: unknown) {
-      const message = err instanceof Error ? err.message : "發生未知錯誤";
-      setError(message);
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("發生未知錯誤");
+      }
       setList([]);
     }
-  };
+  }, [city]);
 
   useEffect(() => {
     load();
-  }, []);
+  }, [load]);
 
   return (
     <section className="weather-dashboard">
-      <Link to="/" className="back-home-link">
+      <Link to="/" className="back-home-link" data-discover="true">
         ← 返回首頁
       </Link>
       <h2 className="weather-dashboard-title">天氣預報看板</h2>
       <div className="weather-dashboard-search">
         <input
-          placeholder="輸入城市，例如 Kaohsiung"
           type="text"
+          placeholder="輸入城市，例如 Taipei"
           value={city}
           onChange={(e) => setCity(e.target.value)}
         />
         <button
           type="button"
-          onClick={load}
           className="weather-dashboard-button"
+          onClick={load}
         >
           查詢
         </button>
       </div>
-      {error && <div className="weather-dashboard-error">{error}</div>}
       <div className="weather-dashboard-grid">
-        {list.map((day) => (
-          <article key={day.dt} className="weather-dashboard-card">
-            <time className="weather-dashboard-date">
-              {new Date(day.dt * 1000).toLocaleDateString("zh-TW", {
-                month: "numeric",
-                day: "numeric",
-              })}
-            </time>
-            <p className="weather-dashboard-temp">
-              最高：{Math.round(day.temp_max)}°C
-              <br />
-              最低：{Math.round(day.temp_min)}°C
-            </p>
-            <p className="weather-dashboard-desc">
-              {day.weather[0].description}
-            </p>
-            <p className="weather-dashboard-code">
-              天氣代碼：{day.weather[0].id}
-            </p>
-          </article>
-        ))}
+        {error ? (
+          <p>{error}</p>
+        ) : (
+          list.map((item) => (
+            <article key={item.dt} className="weather-dashboard-card">
+              <time className="weather-dashboard-date">
+                {new Date(item.dt * 1000).toLocaleDateString(undefined, {
+                  month: "numeric",
+                  day: "numeric",
+                })}
+              </time>
+              <p className="weather-dashboard-temp">
+                最高：{Math.round(item.temp.max)}°C
+                <br />
+                最低：{Math.round(item.temp.min)}°C
+              </p>
+              <p className="weather-dashboard-desc">{item.weather[0].main}</p>
+              <p className="weather-dashboard-code">
+                天氣代碼：{item.weather[0].id}
+              </p>
+            </article>
+          ))
+        )}
       </div>
     </section>
   );
-};
-
-export default WeatherDashboard;
+}
