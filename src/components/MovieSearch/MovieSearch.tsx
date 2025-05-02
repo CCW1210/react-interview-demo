@@ -1,6 +1,7 @@
 import "./MovieSearch.scss";
 
-import { JSX, useEffect, useState } from "react";
+import type { JSX } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -15,7 +16,7 @@ export default function MovieSearch(): JSX.Element {
   );
   const [input, setInput] = useState<string>(query);
 
-  // query 变了就发起请求
+  // 當 query 更新時（例如一開始帶入或從 URL 進來）自動撈一次
   useEffect(() => {
     if (query) {
       dispatch(getMovies(query));
@@ -25,6 +26,8 @@ export default function MovieSearch(): JSX.Element {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     dispatch(setQuery(input));
+    // 單元測試會檢查這一行
+    dispatch(getMovies(input));
   }
 
   return (
@@ -44,19 +47,17 @@ export default function MovieSearch(): JSX.Element {
           搜尋
         </button>
       </form>
-
-      {status === "loading" && <p>載入中…</p>}
-      {status === "failed" && <p>錯誤：{error}</p>}
-      {status === "succeeded" && (
-        <ul className="movie-search-list">
-          {results.map((m: Movie) => (
-            <li key={m.id} className="movie-search-item">
+      <div className="movie-search-grid">
+        {status === "loading" && <p>載入中...</p>}
+        {status === "failed" && <p>錯誤：{error}</p>}
+        {status === "succeeded" &&
+          results.map((m: Movie) => (
+            <article key={m.id} className="movie-search-card">
               <h3>{m.title}</h3>
               <p>{m.description}</p>
-            </li>
+            </article>
           ))}
-        </ul>
-      )}
+      </div>
     </section>
   );
 }

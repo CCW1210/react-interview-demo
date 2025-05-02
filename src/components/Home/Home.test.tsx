@@ -1,4 +1,3 @@
-// src/components/Home/Home.test.tsx
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 
@@ -12,8 +11,8 @@ describe("Home", () => {
       </MemoryRouter>
     );
 
-    // 測試應改為符合 Home.tsx 中實際顯示的文字
-    expect(screen.getByText("Todo List清單管理器")).toBeInTheDocument();
+    // 文字有可能包含多餘的標籤或空白，用正規去配更彈性
+    expect(screen.getByText(/Todo List清單管理器/)).toBeInTheDocument();
     expect(screen.getByText("天氣預報看板")).toBeInTheDocument();
     expect(screen.getByText("電影搜尋與收藏")).toBeInTheDocument();
     expect(screen.getByText("收支管理／金流紀錄")).toBeInTheDocument();

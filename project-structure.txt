@@ -15,8 +15,6 @@ C:\Users\KHUser\Desktop\2025面試\Welhunt\react-interview
 |  |  ├── forecast.json
 |  |  └── movies.json
 |  ├── screenshots
-|  |  └── todo.cy.ts
-|  |     └── Todo List 功能測試 -- 可以新增一筆 todo，並完成、刪除它 (failed).png
 |  └── support
 |     └── index.ts
 ├── cypress.config.js
@@ -91,6 +89,6 @@ C:\Users\KHUser\Desktop\2025面試\Welhunt\react-interview
 ├── tsconfig.node.json
 └── vite.config.ts
 
-directory: 3021 file: 16845
+directory: 3029 file: 16879
 
 ignored: directory (75)

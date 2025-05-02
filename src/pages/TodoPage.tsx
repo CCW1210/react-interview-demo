@@ -1,16 +1,14 @@
-// src/pages/TodoPage.tsx
-
 import "../App.scss";
 
-import { JSX, useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { loadTodos, saveTodos, Todo } from "../api/storage";
+import { loadTodos, saveTodos, Todo as StorageTodo } from "../api/storage";
 import TodoInput from "../components/TodoInput/TodoInput";
 import TodoList from "../components/TodoList/TodoList";
 
-export function TodoPage(): JSX.Element {
-  const [todos, setTodos] = useState<Todo[]>([]);
+export function TodoPage() {
+  const [todos, setTodos] = useState<StorageTodo[]>([]);
 
   useEffect(() => {
     setTodos(loadTodos());
@@ -21,7 +19,7 @@ export function TodoPage(): JSX.Element {
   }, [todos]);
 
   const handleAdd = useCallback((text: string) => {
-    const newTodo: Todo = {
+    const newTodo: StorageTodo = {
       id: Date.now().toString(),
       text,
       done: false,
@@ -31,7 +29,14 @@ export function TodoPage(): JSX.Element {
 
   const handleToggle = useCallback((id: string) => {
     setTodos((prev) =>
-      prev.map((t) => (t.id === id ? { ...t, done: !t.done } : t))
+      prev.map((t) =>
+        t.id === id
+          ? {
+              ...t,
+              done: !t.done,
+            }
+          : t
+      )
     );
   }, []);
 

@@ -1,16 +1,15 @@
-// src/components/TodoInput/TodoInput.tsx
 import "./TodoInput.scss";
 
-import React, { useState } from "react";
+import { JSX, useState } from "react";
 
 interface TodoInputProps {
   onAdd(text: string): void;
 }
 
-export function TodoInput({ onAdd }: TodoInputProps) {
+export default function TodoInput({ onAdd }: TodoInputProps): JSX.Element {
   const [text, setText] = useState("");
 
-  function handleSubmit(e: React.FormEvent) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const trimmed = text.trim();
     if (!trimmed) {
@@ -35,5 +34,3 @@ export function TodoInput({ onAdd }: TodoInputProps) {
     </form>
   );
 }
-
-export default TodoInput;
