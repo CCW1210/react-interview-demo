@@ -1,4 +1,6 @@
-﻿@import "../../styles/_variables";
+﻿/* src/components/Home/Home.scss */
+
+@use "../../styles/variables" as vars;
 
 .home {
   padding: 2rem;
@@ -17,7 +19,7 @@
 
       a {
         text-decoration: none;
-        color: -color;
+        color: vars.$primary-color;
 
         &:hover {
           text-decoration: underline;

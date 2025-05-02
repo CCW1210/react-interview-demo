@@ -1,0 +1,69 @@
+// src/components/WeatherDashboard/WeatherDashboard.scss
+
+@use '../../styles/variables' as vars;
+@use 'sass:math';
+
+.weather-dashboard {
+    padding: vars.$spacing;
+    color: vars.$text-color;
+}
+
+.weather-dashboard-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: vars.$spacing;
+}
+
+.weather-dashboard-search {
+    margin-bottom: vars.$spacing;
+}
+
+.weather-dashboard-input {
+    width: 100%;
+    padding: vars.$spacing;
+    border: 1px solid vars.$primary-color;
+    border-radius: 4px;
+    font-size: 1rem;
+    color: vars.$text-color;
+}
+
+.weather-dashboard-error {
+    color: red;
+    margin-bottom: vars.$spacing;
+}
+
+.weather-dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: vars.$spacing;
+}
+
+.weather-dashboard-card {
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
+    padding: vars.$spacing;
+    text-align: center;
+}
+
+.weather-dashboard-date {
+    font-weight: 500;
+    margin-bottom: vars.$spacing;
+}
+
+.weather-dashboard-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto vars.$spacing;
+}
+
+.weather-dashboard-temp {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: vars.$spacing;
+}
+
+.weather-dashboard-desc {
+    font-size: 0.875rem;
+    text-transform: capitalize;
+}

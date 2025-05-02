@@ -1,25 +1,27 @@
 // src/App.scss
-@import "./styles/variables";
+
+@use '../src/styles/variables' as vars;
+@use 'sass:math';
 
 .app-container {
   max-width: 480px;
   margin: 2rem auto;
   background: #fff;
-  padding: $spacing;
+  padding: vars.$spacing;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
 
   h1 {
     text-align: center;
-    margin-bottom: $spacing;
+    margin-bottom: vars.$spacing;
     font-size: 1.75rem;
   }
 }
 
-@media (width <= 400px) {
+@media (max-width: 400px) {
   .app-container {
     margin: 1rem;
-    padding: $spacing / 2;
+    padding: math.div(vars.$spacing, 2);
 
     h1 {
       font-size: 1.5rem;

@@ -1,20 +1,22 @@
 // src/components/TodoList/TodoList.scss
-@import "../../styles/variables";
+
+@use '../../styles/variables' as vars;
+@use 'sass:math';
 
 .container {
   .filters {
-    margin-bottom: $spacing / 2;
+    margin-bottom: math.div(vars.$spacing, 2);
 
     button {
-      margin-right: $spacing / 2;
-      padding: $spacing / 4 $spacing / 2;
-      border: 1px solid $primary-color;
+      margin-right: math.div(vars.$spacing, 2);
+      padding: math.div(vars.$spacing, 4) math.div(vars.$spacing, 2);
+      border: 1px solid vars.$primary-color;
       background: transparent;
       cursor: pointer;
 
       &.active {
-        background: $primary-color;
-        color: white;
+        background: vars.$primary-color;
+        color: #fff;
       }
     }
   }
@@ -26,9 +28,9 @@
   }
 }
 
-@media (width <= 400px) {
+@media (max-width: 400px) {
   .filters button {
-    padding: $spacing / 5 $spacing / 3;
+    padding: math.div(vars.$spacing, 5) math.div(vars.$spacing, 3);
     font-size: 0.85rem;
   }
 }

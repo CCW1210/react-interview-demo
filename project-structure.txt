@@ -1,4 +1,5 @@
 C:\Users\KHUser\Desktop\2025面試\Welhunt\react-interview
+├── .env
 ├── .eslintrc.cjs
 ├── .gitignore
 ├── .prettierrc
@@ -11,7 +12,8 @@ C:\Users\KHUser\Desktop\2025面試\Welhunt\react-interview
 ├── README.md
 ├── src
 |  ├── api
-|  |  └── storage.ts
+|  |  ├── storage.ts
+|  |  └── weather.ts
 |  ├── App.scss
 |  ├── App.tsx
 |  ├── assets
@@ -26,9 +28,12 @@ C:\Users\KHUser\Desktop\2025面試\Welhunt\react-interview
 |  |  ├── TodoItem
 |  |  |  ├── TodoItem.scss
 |  |  |  └── TodoItem.tsx
-|  |  └── TodoList
-|  |     ├── TodoList.scss
-|  |     └── TodoList.tsx
+|  |  ├── TodoList
+|  |  |  ├── TodoList.scss
+|  |  |  └── TodoList.tsx
+|  |  └── WeatherDashboard
+|  |     ├── WeatherDashboard.scss
+|  |     └── WeatherDashboard.tsx
 |  ├── index.scss
 |  ├── main.tsx
 |  ├── pages
@@ -39,10 +44,9 @@ C:\Users\KHUser\Desktop\2025面試\Welhunt\react-interview
 ├── stylelint.config.js
 ├── tsconfig.app.json
 ├── tsconfig.json
-├── tsconfig.json.bak
 ├── tsconfig.node.json
 └── vite.config.ts
 
-directory: 1745 file: 10472
+directory: 1780 file: 10627
 
 ignored: directory (34)
