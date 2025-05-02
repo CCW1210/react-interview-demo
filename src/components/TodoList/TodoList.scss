@@ -28,7 +28,7 @@
   }
 }
 
-@media (max-width: 400px) {
+@media (width <= 400px) {
   .filters button {
     padding: math.div(vars.$spacing, 5) math.div(vars.$spacing, 3);
     font-size: 0.85rem;

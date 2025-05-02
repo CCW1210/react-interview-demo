@@ -1,3 +1,5 @@
+// src/components/TodoList/TodoList.tsx
+
 import "./TodoList.scss";
 
 import { JSX } from "react";
@@ -7,8 +9,8 @@ import TodoItem from "../TodoItem/TodoItem";
 
 interface TodoListProps {
   todos: Todo[];
-  onToggle: (id: number) => void;
-  onRemove: (id: number) => void;
+  onToggle: (id: string) => void;
+  onRemove: (id: string) => void;
 }
 
 export function TodoList({
@@ -16,18 +18,17 @@ export function TodoList({
   onToggle,
   onRemove,
 }: TodoListProps): JSX.Element {
-  if (todos.length === 0) {
-    return <p>目前沒有待辦事項</p>;
-  }
-
   return (
-    <ul className="todo-list">
-      {todos.map((t) => (
-        <li key={t.id}>
-          <TodoItem todo={t} onToggle={onToggle} onRemove={onRemove} />
-        </li>
+    <div className="todo-list">
+      {todos.map((todo) => (
+        <TodoItem
+          key={todo.id}
+          todo={todo}
+          onToggle={onToggle}
+          onRemove={onRemove}
+        />
       ))}
-    </ul>
+    </div>
   );
 }
 

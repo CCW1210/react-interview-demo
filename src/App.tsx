@@ -5,7 +5,10 @@ import "./App.scss";
 import { JSX } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
+import ChatApp from "./components/ChatApp/ChatApp";
+import ExpenseTracker from "./components/ExpenseTracker/ExpenseTracker";
 import Home from "./components/Home/Home";
+import MovieSearch from "./components/MovieSearch/MovieSearch";
 import WeatherDashboard from "./components/WeatherDashboard/WeatherDashboard";
 import TodoPage from "./pages/TodoPage";
 
@@ -16,15 +19,9 @@ export function App(): JSX.Element {
         <Route path="/" element={<Home />} />
         <Route path="/todoList" element={<TodoPage />} />
         <Route path="/weatherDashboard" element={<WeatherDashboard />} />
-        <Route
-          path="/movieSearch"
-          element={<div>電影搜尋與收藏，敬請期待</div>}
-        />
-        <Route
-          path="/expenseTracker"
-          element={<div>收支管理／金流紀錄，敬請期待</div>}
-        />
-        <Route path="/chatApp" element={<div>即時聊天室，敬請期待</div>} />
+        <Route path="/movieSearch" element={<MovieSearch />} />
+        <Route path="/expenseTracker" element={<ExpenseTracker />} />
+        <Route path="/chatApp" element={<ChatApp />} />
       </Routes>
     </BrowserRouter>
   );

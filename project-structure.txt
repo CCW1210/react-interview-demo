@@ -1,5 +1,4 @@
 C:\Users\KHUser\Desktop\2025面試\Welhunt\react-interview
-├── .env
 ├── .eslintrc.cjs
 ├── .gitignore
 ├── .prettierrc
@@ -12,6 +11,7 @@ C:\Users\KHUser\Desktop\2025面試\Welhunt\react-interview
 ├── README.md
 ├── src
 |  ├── api
+|  |  ├── movie.ts
 |  |  ├── storage.ts
 |  |  └── weather.ts
 |  ├── App.scss
@@ -19,9 +19,18 @@ C:\Users\KHUser\Desktop\2025面試\Welhunt\react-interview
 |  ├── assets
 |  |  └── react.svg
 |  ├── components
+|  |  ├── ChatApp
+|  |  |  ├── ChatApp.scss
+|  |  |  └── ChatApp.tsx
+|  |  ├── ExpenseTracker
+|  |  |  ├── ExpenseTracker.scss
+|  |  |  └── ExpenseTracker.tsx
 |  |  ├── Home
 |  |  |  ├── Home.scss
 |  |  |  └── Home.tsx
+|  |  ├── MovieSearch
+|  |  |  ├── MovieSearch.scss
+|  |  |  └── MovieSearch.tsx
 |  |  ├── TodoInput
 |  |  |  ├── TodoInput.scss
 |  |  |  └── TodoInput.tsx
@@ -38,6 +47,10 @@ C:\Users\KHUser\Desktop\2025面試\Welhunt\react-interview
 |  ├── main.tsx
 |  ├── pages
 |  |  └── TodoPage.tsx
+|  ├── store
+|  |  ├── expenseSlice.ts
+|  |  ├── index.ts
+|  |  └── movieSlice.ts
 |  ├── styles
 |  |  └── _variables.scss
 |  └── vite-env.d.ts
@@ -47,6 +60,6 @@ C:\Users\KHUser\Desktop\2025面試\Welhunt\react-interview
 ├── tsconfig.node.json
 └── vite.config.ts
 
-directory: 1780 file: 10627
+directory: 1858 file: 10885
 
 ignored: directory (34)

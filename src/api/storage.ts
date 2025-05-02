@@ -1,30 +1,50 @@
 // src/api/storage.ts
 
-/** Todo 型別定義 */
+/**
+ * Todo 型別
+ */
 export interface Todo {
-  id: number;
+  id: string;
   text: string;
   done: boolean;
 }
 
-const STORAGE_KEY = "todo-list";
-
-/** 從 localStorage 載入 Todo 陣列 */
-export function loadTodos(): Todo[] {
+/**
+ * 泛用 loadItem (localStorage)
+ */
+export function loadItem<T>(key: string): T | undefined {
   try {
-    const data = localStorage.getItem(STORAGE_KEY);
-    return data ? (JSON.parse(data) as Todo[]) : [];
+    const json = localStorage.getItem(key);
+    if (json) {
+      return JSON.parse(json) as T;
+    }
   } catch {
-    // 失敗就回傳空陣列
-    return [];
+    // 忽略解析錯誤
+  }
+  return undefined;
+}
+
+/**
+ * 泛用 saveItem (localStorage)
+ */
+export function saveItem<T>(key: string, data: T): void {
+  try {
+    localStorage.setItem(key, JSON.stringify(data));
+  } catch {
+    // 忽略存入錯誤
   }
 }
 
-/** 將 Todo 陣列存回 localStorage */
+/**
+ * 載入所有 Todo
+ */
+export function loadTodos(): Todo[] {
+  return loadItem<Todo[]>("todos") ?? [];
+}
+
+/**
+ * 儲存所有 Todo
+ */
 export function saveTodos(todos: Todo[]): void {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
-  } catch {
-    // 忽略儲存失敗
-  }
+  saveItem<Todo[]>("todos", todos);
 }

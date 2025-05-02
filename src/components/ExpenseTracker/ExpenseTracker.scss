@@ -1,0 +1,80 @@
+// src/components/ExpenseTracker/ExpenseTracker.scss
+
+@use 'sass:math';
+@use 'sass:color';
+@use '../../styles/_variables' as vars;
+
+.expense-tracker {
+    padding: vars.$spacing;
+    color: vars.$text-color;
+
+    &-title {
+        font-size: 1.5rem;
+        margin-bottom: vars.$spacing;
+    }
+
+    &-form {
+        display: flex;
+        flex-wrap: wrap;
+        gap: vars.$spacing;
+        margin-bottom: vars.$spacing;
+
+        & .expense-tracker-input {
+            padding: math.div(vars.$spacing, 2);
+            border: 1px solid vars.$primary-color;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        & .expense-tracker-button {
+            padding: math.div(vars.$spacing, 2) vars.$spacing;
+            background-color: vars.$primary-color;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: color.adjust(vars.$primary-color,
+                        $lightness: -10%,
+                    );
+            }
+        }
+    }
+
+    &-filter {
+        margin-bottom: vars.$spacing;
+
+        & select {
+            margin-left: math.div(vars.$spacing, 2);
+            padding: math.div(vars.$spacing, 4) vars.$spacing;
+        }
+    }
+
+    &-summary {
+        font-weight: 600;
+        margin-bottom: vars.$spacing;
+    }
+
+    &-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        & .expense-tracker-item {
+            display: grid;
+            grid-template-columns: 100px 1fr 100px 100px 60px;
+            align-items: center;
+            gap: math.div(vars.$spacing, 2);
+            padding: math.div(vars.$spacing, 2) 0;
+            border-bottom: 1px solid #eee;
+
+            & .expense-tracker-remove {
+                background: none;
+                border: none;
+                color: red;
+                cursor: pointer;
+            }
+        }
+    }
+}

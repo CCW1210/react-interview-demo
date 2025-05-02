@@ -29,7 +29,7 @@ li {
   }
 }
 
-@media (max-width: 400px) {
+@media (width <= 400px) {
   li {
     font-size: 0.9rem;
   }

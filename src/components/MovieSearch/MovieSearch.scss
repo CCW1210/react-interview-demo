@@ -1,0 +1,132 @@
+// src/components/MovieSearch/MovieSearch.scss
+
+@use 'sass:math';
+@use 'sass:color';
+@use '../../styles/_variables' as vars;
+
+.movie-search {
+    padding: vars.$spacing;
+    color: vars.$text-color;
+}
+
+.movie-search-title {
+    font-size: 1.5rem;
+    margin-bottom: vars.$spacing;
+}
+
+.movie-search-form {
+    display: flex;
+    margin-bottom: vars.$spacing;
+
+    .movie-search-input {
+        flex: 1;
+        padding: vars.$spacing;
+        border: 1px solid vars.$primary-color;
+        border-radius: 4px 0 0 4px;
+    }
+
+    .movie-search-button {
+        padding: vars.$spacing;
+        background-color: vars.$primary-color;
+        color: #fff;
+        border: none;
+        border-radius: 0 4px 4px 0;
+        cursor: pointer;
+
+        &:hover {
+            background-color: color.adjust(vars.$primary-color,
+                    $lightness: -10%,
+                );
+        }
+    }
+}
+
+.movie-search-error {
+    color: red;
+    margin-bottom: vars.$spacing;
+}
+
+.movie-search-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,
+            minmax(140px, 1fr),
+        );
+    gap: vars.$spacing;
+}
+
+.movie-search-card {
+    background-color: #fff;
+    padding: vars.$spacing;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
+    text-align: center;
+}
+
+.movie-search-poster {
+    width: 100%;
+    margin-bottom: vars.$spacing;
+}
+
+.movie-search-no-poster {
+    width: 100%;
+    height: 210px;
+    background-color: #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: vars.$spacing;
+}
+
+.movie-search-name {
+    font-size: 1.125rem;
+    margin-bottom: vars.$spacing;
+}
+
+.movie-search-release {
+    font-size: 0.875rem;
+    margin-bottom: vars.$spacing;
+}
+
+.movie-search-overview {
+    font-size: 0.75rem;
+    margin-bottom: vars.$spacing;
+}
+
+.movie-search-fav-button {
+    padding: math.div(vars.$spacing, 2) vars.$spacing;
+    border: 1px solid vars.$primary-color;
+    border-radius: 4px;
+    background: none;
+    cursor: pointer;
+
+    &.favorited {
+        background-color: vars.$primary-color;
+        color: #fff;
+    }
+}
+
+.movie-search-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: vars.$spacing;
+    margin-top: vars.$spacing;
+
+    button {
+        padding: math.div(vars.$spacing, 2) vars.$spacing;
+        background-color: vars.$primary-color;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+
+        &:disabled {
+            background-color: #ccc;
+            cursor: default;
+        }
+    }
+
+    span {
+        color: vars.$text-color;
+    }
+}

@@ -11,7 +11,7 @@ interface MenuItem {
 const items: readonly MenuItem[] = [
   { path: "/todoList", label: "Todo List清單管理器" },
   { path: "/weatherDashboard", label: "天氣預報看板" },
-  { path: "/movieSearch", label: "電影搜尋與收藏）" },
+  { path: "/movieSearch", label: "電影搜尋與收藏" },
   { path: "/expenseTracker", label: "收支管理／金流紀錄" },
   { path: "/chatApp", label: "即時聊天室" },
 ];

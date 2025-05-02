@@ -1,0 +1,62 @@
+// src/components/ChatApp/ChatApp.scss
+
+@use 'sass:math';
+@use 'sass:color';
+@use '../../styles/_variables' as vars;
+
+.chat-app {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: color.adjust(vars.$primary-color, $lightness: 95%);
+}
+
+.chat-app-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: vars.$spacing;
+}
+
+.chat-app-message {
+    max-width: 70%;
+    margin-bottom: math.div(vars.$spacing, 2);
+    padding: vars.$spacing;
+    border-radius: 4px;
+    word-break: break-word;
+}
+
+.chat-app-message-me {
+    background-color: vars.$primary-color;
+    color: #fff;
+    align-self: flex-end;
+}
+
+.chat-app-message-server {
+    background-color: color.adjust(vars.$primary-color, $lightness: 80%);
+    color: #000;
+    align-self: flex-start;
+}
+
+.chat-app-input-area {
+    display: flex;
+    border-top: 1px solid color.adjust(vars.$primary-color, $lightness: 80%);
+}
+
+.chat-app-input {
+    flex: 1;
+    padding: math.div(vars.$spacing, 2);
+    border: none;
+    font-size: 1rem;
+}
+
+.chat-app-send-button {
+    padding: math.div(vars.$spacing, 2) vars.$spacing;
+    background-color: vars.$primary-color;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+        background-color: color.adjust(vars.$primary-color, $lightness: -10%);
+    }
+}

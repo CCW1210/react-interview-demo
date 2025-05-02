@@ -30,7 +30,7 @@
   }
 }
 
-@media (max-width: 400px) {
+@media (width <= 400px) {
   .field {
     font-size: 0.9rem;
   }

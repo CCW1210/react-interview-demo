@@ -1,6 +1,9 @@
+// src/pages/TodoPage.tsx
+
 import "../App.scss";
 
 import { JSX, useCallback, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 import { loadTodos, saveTodos, Todo } from "../api/storage";
 import TodoInput from "../components/TodoInput/TodoInput";
@@ -18,22 +21,30 @@ export function TodoPage(): JSX.Element {
   }, [todos]);
 
   const handleAdd = useCallback((text: string) => {
-    const newTodo: Todo = { id: Date.now(), text, done: false };
+    const newTodo: Todo = {
+      id: Date.now().toString(),
+      text,
+      done: false,
+    };
     setTodos((prev) => [newTodo, ...prev]);
   }, []);
 
-  const handleToggle = useCallback((id: number) => {
+  const handleToggle = useCallback((id: string) => {
     setTodos((prev) =>
       prev.map((t) => (t.id === id ? { ...t, done: !t.done } : t))
     );
   }, []);
 
-  const handleRemove = useCallback((id: number) => {
+  const handleRemove = useCallback((id: string) => {
     setTodos((prev) => prev.filter((t) => t.id !== id));
   }, []);
 
   return (
     <div className="app-container">
+      <Link to="/" className="back-home-link">
+        ← 返回首頁
+      </Link>
+
       <h1>Todo List</h1>
       <TodoInput onAdd={handleAdd} />
       <TodoList todos={todos} onToggle={handleToggle} onRemove={handleRemove} />
