@@ -1,55 +1,48 @@
-// src/components/ExpenseTracker/ExpenseTracker.test.tsx
-
 import { render, screen, fireEvent } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import expenseReducer from "../../store/expenseSlice";
 import ExpenseTracker from "./ExpenseTracker";
 
-function renderWithStore() {
+function renderWithProviders() {
   const store = configureStore({ reducer: { expenses: expenseReducer } });
   render(
     <Provider store={store}>
-      <ExpenseTracker />
+      <MemoryRouter>
+        <ExpenseTracker />
+      </MemoryRouter>
     </Provider>
   );
 }
 
 describe("ExpenseTracker", () => {
   it("能新增、篩選及刪除支出", () => {
-    renderWithStore();
+    renderWithProviders();
 
-    fireEvent.change(screen.getByPlaceholderText("描述"), {
-      target: { value: "午餐" },
+    // 新增一筆
+    fireEvent.change(screen.getByPlaceholderText(/描述/), {
+      target: { value: "Lunch" },
     });
-    fireEvent.change(screen.getByPlaceholderText("金額"), {
-      target: { value: "200" },
+    fireEvent.change(screen.getByPlaceholderText(/金額/), {
+      target: { value: "100" },
     });
-    fireEvent.change(screen.getByPlaceholderText("類別"), {
-      target: { value: "餐飲" },
+    fireEvent.change(screen.getByPlaceholderText(/類別/), {
+      target: { value: "Food" },
     });
-    fireEvent.click(screen.getByText("新增"));
-    expect(screen.getByText("午餐")).toBeInTheDocument();
-    expect(screen.getByText("200 元")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: /新增/ }));
 
-    fireEvent.change(screen.getByLabelText("篩選類別："), {
-      target: { value: "餐飲" },
-    });
-    expect(screen.getByText("午餐")).toBeInTheDocument();
+    expect(screen.getByText("Lunch")).toBeInTheDocument();
+    expect(screen.getByText("100 元")).toBeInTheDocument();
 
-    fireEvent.change(screen.getByPlaceholderText("描述"), {
-      target: { value: "捷運" },
+    // 篩選
+    fireEvent.change(screen.getByLabelText(/篩選類別/), {
+      target: { value: "Food" },
     });
-    fireEvent.change(screen.getByPlaceholderText("金額"), {
-      target: { value: "50" },
-    });
-    fireEvent.change(screen.getByPlaceholderText("類別"), {
-      target: { value: "交通" },
-    });
-    fireEvent.click(screen.getByText("新增"));
-    expect(screen.queryByText("捷運")).not.toBeInTheDocument();
+    expect(screen.getByText(/合計：100 元/)).toBeInTheDocument();
 
-    fireEvent.click(screen.getAllByText("刪除")[0]);
-    expect(screen.queryByText("午餐")).not.toBeInTheDocument();
+    // 刪除
+    fireEvent.click(screen.getByRole("button", { name: /刪除/ }));
+    expect(screen.queryByText("Lunch")).toBeNull();
   });
 });

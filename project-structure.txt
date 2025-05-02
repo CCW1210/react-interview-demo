@@ -4,10 +4,16 @@ C:\Users\KHUser\Desktop\2025面試\Welhunt\react-interview
 ├── .prettierrc
 ├── cypress
 |  ├── e2e
-|  |  └── todo.cy.ts
+|  |  ├── chat.cy.ts
+|  |  ├── expense.cy.ts
+|  |  ├── home.cy.ts
+|  |  ├── movie.cy.ts
+|  |  ├── todo.cy.ts
+|  |  └── weather.cy.ts
 |  └── support
 |     └── index.ts
 ├── cypress.config.ts
+├── global.d.ts
 ├── index.html
 ├── jest.config.js
 ├── package-lock.json
@@ -28,15 +34,19 @@ C:\Users\KHUser\Desktop\2025面試\Welhunt\react-interview
 |  ├── components
 |  |  ├── ChatApp
 |  |  |  ├── ChatApp.scss
+|  |  |  ├── ChatApp.test.tsx
 |  |  |  └── ChatApp.tsx
 |  |  ├── ExpenseTracker
 |  |  |  ├── ExpenseTracker.scss
+|  |  |  ├── ExpenseTracker.test.tsx
 |  |  |  └── ExpenseTracker.tsx
 |  |  ├── Home
 |  |  |  ├── Home.scss
+|  |  |  ├── Home.test.tsx
 |  |  |  └── Home.tsx
 |  |  ├── MovieSearch
 |  |  |  ├── MovieSearch.scss
+|  |  |  ├── MovieSearch.test.tsx
 |  |  |  └── MovieSearch.tsx
 |  |  ├── TodoInput
 |  |  |  ├── TodoInput.scss
@@ -50,6 +60,7 @@ C:\Users\KHUser\Desktop\2025面試\Welhunt\react-interview
 |  |  |  └── TodoList.tsx
 |  |  └── WeatherDashboard
 |  |     ├── WeatherDashboard.scss
+|  |     ├── WeatherDashboard.test.tsx
 |  |     └── WeatherDashboard.tsx
 |  ├── index.scss
 |  ├── main.tsx
@@ -70,6 +81,6 @@ C:\Users\KHUser\Desktop\2025面試\Welhunt\react-interview
 ├── tsconfig.node.json
 └── vite.config.ts
 
-directory: 2866 file: 16180
+directory: 2994 file: 16753
 
-ignored: directory (73)
+ignored: directory (75)

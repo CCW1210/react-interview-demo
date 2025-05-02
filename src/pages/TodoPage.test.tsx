@@ -1,24 +1,24 @@
-﻿// src/pages/TodoPage.test.tsx
-
-import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+﻿import { render, screen, fireEvent } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
 import TodoPage from "./TodoPage";
 
-beforeEach(() => {
-  localStorage.clear();
-});
+describe("TodoPage", () => {
+  it("可以新增、切換、刪除 Todo", () => {
+    render(
+      <MemoryRouter>
+        <TodoPage />
+      </MemoryRouter>
+    );
 
-test("可以新增、切換、刪除 Todo", async () => {
-  render(<TodoPage />);
-  const input = screen.getByPlaceholderText("新增待辦事項…");
-  await userEvent.type(input, "E2E 測試");
-  await userEvent.click(screen.getByRole("button", { name: "新增" }));
-  expect(screen.getByText("E2E 測試")).toBeInTheDocument();
+    const input = screen.getByPlaceholderText("輸入待辦事項");
+    fireEvent.change(input, { target: { value: "E2E 測試" } });
+    fireEvent.click(screen.getByRole("button", { name: "新增" }));
+    expect(screen.getByText("E2E 測試")).toBeInTheDocument();
 
-  const checkbox = screen.getByRole("checkbox");
-  await userEvent.click(checkbox);
-  expect(checkbox).toBeChecked();
+    fireEvent.click(screen.getByRole("checkbox"));
+    expect(screen.getByText("E2E 測試")).toHaveClass("done");
 
-  await userEvent.click(screen.getByRole("button", { name: "刪除" }));
-  expect(screen.queryByText("E2E 測試")).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: /刪除/ }));
+    expect(screen.queryByText("E2E 測試")).toBeNull();
+  });
 });

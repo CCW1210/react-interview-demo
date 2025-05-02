@@ -1,1 +1,8 @@
-﻿import '@testing-library/jest-dom';
+﻿// src/setupTests.ts
+import "@testing-library/jest-dom";
+
+// Node.js 環境下補上 TextEncoder、TextDecoder
+import { TextEncoder, TextDecoder } from "util";
+
+(global as any).TextEncoder = TextEncoder;
+(global as any).TextDecoder = TextDecoder;

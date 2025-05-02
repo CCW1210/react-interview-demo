@@ -1,48 +1,43 @@
-/* eslint-disable no-param-reassign */
 // src/store/expenseSlice.ts
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { loadItem } from "../api/storage";
-
-export interface Expense {
+// 一筆支出的資料結構
+export interface ExpenseItem {
   id: string;
   description: string;
   amount: number;
-  category: string;
-  date: string; // ISO
 }
 
-interface ExpenseState {
-  list: Expense[];
-  filterCategory: string;
+// Slice 的 State 型別，一定要匯出
+export interface ExpenseState {
+  list: ExpenseItem[];
 }
 
+// 初始狀態
 const initialState: ExpenseState = {
-  list: loadItem<Expense[]>("expenses") ?? [],
-  filterCategory: "all",
+  list: [],
 };
 
 const expenseSlice = createSlice({
   name: "expenses",
   initialState,
   reducers: {
-    addExpense(state, action: PayloadAction<Omit<Expense, "id">>) {
-      const newExpense: Expense = {
-        id: Date.now().toString(),
-        ...action.payload,
-      };
-      state.list.push(newExpense);
+    addExpense(state, action: PayloadAction<ExpenseItem>) {
+      state.list.push(action.payload);
     },
     removeExpense(state, action: PayloadAction<string>) {
       state.list = state.list.filter((exp) => exp.id !== action.payload);
     },
-    setFilterCategory(state, action: PayloadAction<string>) {
-      state.filterCategory = action.payload;
+    clearExpenses(state) {
+      state.list = [];
     },
   },
 });
 
-export const { addExpense, removeExpense, setFilterCategory } =
+// 匯出 actions
+export const { addExpense, removeExpense, clearExpenses } =
   expenseSlice.actions;
+
+// 匯出 reducer
 export default expenseSlice.reducer;

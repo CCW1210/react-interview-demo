@@ -1,17 +1,19 @@
-﻿describe('Todo 端到端測試', () => {
-  it('新增、切換、刪除 Todo', () => {
-    cy.visit('/');
-    cy.contains('Todo List').click();
-    cy.url().should('include', '/todoList');
+﻿// cypress/e2e/todo.cy.ts
+/// <reference types="cypress" />
 
-    cy.get('input[placeholder=\"新增待辦事項\"]').type('Cypress 測試');
-    cy.get('button').contains('新增').click();
-    cy.contains('Cypress 測試').should('exist');
+describe("Todo List 功能測試", () => {
+  beforeEach(() => {
+    cy.visit("/todoList");
+    cy.get('input[placeholder="新增待辦事項…"]').as("input");
+  });
 
-    cy.get('input[type=\"checkbox\"]').check();
-    cy.get('input[type=\"checkbox\"]').should('be.checked');
+  it("可以新增一筆 todo，並切換、刪除", () => {
+    cy.get("@input").type("Cypress 測試");
+    cy.contains("新增").click();
+    cy.contains("Cypress 測試").should("exist");
 
-    cy.get('button').contains('刪除').click();
-    cy.contains('Cypress 測試').should('not.exist');
+    cy.get('input[type="checkbox"]').check().should("be.checked");
+    cy.contains("刪除").click();
+    cy.contains("Cypress 測試").should("not.exist");
   });
 });
