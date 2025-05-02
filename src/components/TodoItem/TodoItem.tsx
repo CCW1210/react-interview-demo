@@ -1,40 +1,21 @@
-// src/components/TodoItem/TodoItem.tsx
-
 import "./TodoItem.scss";
 
-import { JSX } from "react";
+import type { Todo } from "../../store/todoSlice";
 
-import { Todo } from "../../api/storage";
-
-interface TodoItemProps {
+export interface TodoItemProps {
   todo: Todo;
-  onToggle: (id: string) => void;
-  onRemove: (id: string) => void;
+  onToggle(): void;
+  onDelete(): void;
 }
 
-export function TodoItem({
-  todo,
-  onToggle,
-  onRemove,
-}: TodoItemProps): JSX.Element {
-  const idAttr = `todo-${todo.id}`;
-
+export default function TodoItem({ todo, onToggle, onDelete }: TodoItemProps) {
   return (
-    <div className="todo-item">
-      <input
-        id={idAttr}
-        type="checkbox"
-        checked={todo.done}
-        onChange={() => onToggle(todo.id)}
-      />
-      <label htmlFor={idAttr} className={todo.done ? "done" : ""}>
-        {todo.text}
-      </label>
-      <button type="button" onClick={() => onRemove(todo.id)}>
+    <li className={`todo-item${todo.completed ? " completed" : ""}`}>
+      <input type="checkbox" checked={todo.completed} onChange={onToggle} />
+      <span>{todo.text}</span>
+      <button type="button" onClick={onDelete}>
         刪除
       </button>
-    </div>
+    </li>
   );
 }
-
-export default TodoItem;

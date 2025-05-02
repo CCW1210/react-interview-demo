@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 
 project-structure.txt
+
+# 忽略 Cypress 的截圖
+cypress/screenshots/

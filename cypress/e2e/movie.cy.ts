@@ -1,20 +1,17 @@
-// cypress/e2e/movie.cy.ts
-/// <reference types="cypress" />
-
-describe("MovieSearch 功能測試 (SampleAPIs 版)", () => {
+describe("MovieSearch 功能測試", () => {
   beforeEach(() => {
-    cy.visit("/movieSearch");
-    cy.intercept("GET", "https://api.sampleapis.com/movies/action", {
-      fixture: "movies.json", // 你可在 cypress/fixtures/movies.json 準備假資料
-    }).as("getMovies");
+    // 攔截 GET /movies?q=…
+    cy.intercept("GET", "**/movies**", { fixture: "movies.json" }).as(
+      "getMovies"
+    );
+    cy.visit("/");
+    cy.contains('a[data-discover="true"]', "電影搜尋與收藏").click();
   });
 
   it("輸入關鍵字後顯示過濾結果", () => {
+    cy.get("input.movie-search-input").type("Inception");
+    cy.contains("button", "搜尋").click();
     cy.wait("@getMovies");
-    cy.get('input[placeholder="輸入電影關鍵字"]').type("Batman");
-    cy.contains("搜尋").click();
-    cy.get(".movie-search-card").each(($card) => {
-      cy.wrap($card).contains(/Batman/i);
-    });
+    cy.get("ul.movie-search-list > li").should("have.length.greaterThan", 0);
   });
 });

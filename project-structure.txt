@@ -10,9 +10,16 @@ C:\Users\KHUser\Desktop\2025面試\Welhunt\react-interview
 |  |  ├── movie.cy.ts
 |  |  ├── todo.cy.ts
 |  |  └── weather.cy.ts
+|  ├── fixtures
+|  |  ├── coords.json
+|  |  ├── forecast.json
+|  |  └── movies.json
+|  ├── screenshots
+|  |  └── todo.cy.ts
+|  |     └── Todo List 功能測試 -- 可以新增一筆 todo，並完成、刪除它 (failed).png
 |  └── support
 |     └── index.ts
-├── cypress.config.ts
+├── cypress.config.js
 ├── global.d.ts
 ├── index.html
 ├── jest.config.js
@@ -71,7 +78,8 @@ C:\Users\KHUser\Desktop\2025面試\Welhunt\react-interview
 |  ├── store
 |  |  ├── expenseSlice.ts
 |  |  ├── index.ts
-|  |  └── movieSlice.ts
+|  |  ├── movieSlice.ts
+|  |  └── todoSlice.ts
 |  ├── styles
 |  |  └── _variables.scss
 |  ├── test-utils
@@ -83,6 +91,6 @@ C:\Users\KHUser\Desktop\2025面試\Welhunt\react-interview
 ├── tsconfig.node.json
 └── vite.config.ts
 
-directory: 3008 file: 16806
+directory: 3021 file: 16845
 
 ignored: directory (75)

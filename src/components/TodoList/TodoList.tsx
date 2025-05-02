@@ -1,35 +1,38 @@
-// src/components/TodoList/TodoList.tsx
-
 import "./TodoList.scss";
 
-import { JSX } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { Todo } from "../../api/storage";
+import type { AppDispatch, RootState } from "../../store";
+import { deleteTodo, type Todo, toggleTodo } from "../../store/todoSlice";
 import TodoItem from "../TodoItem/TodoItem";
 
-interface TodoListProps {
-  todos: Todo[];
-  onToggle: (id: string) => void;
-  onRemove: (id: string) => void;
+/**
+ * 把 handler 抽出去，減少 JSX 裡的 inline function
+ */
+function makeHandlers(id: string, dispatch: AppDispatch) {
+  return {
+    onToggle: () => dispatch(toggleTodo(id)),
+    onDelete: () => dispatch(deleteTodo(id)),
+  };
 }
 
-export function TodoList({
-  todos,
-  onToggle,
-  onRemove,
-}: TodoListProps): JSX.Element {
+export default function TodoList() {
+  const todos = useSelector((s: RootState) => s.todos.list);
+  const dispatch = useDispatch<AppDispatch>();
+
   return (
-    <div className="todo-list">
-      {todos.map((todo) => (
-        <TodoItem
-          key={todo.id}
-          todo={todo}
-          onToggle={onToggle}
-          onRemove={onRemove}
-        />
-      ))}
-    </div>
+    <ul className="todo-list">
+      {todos.map((todo: Todo) => {
+        const { onToggle, onDelete } = makeHandlers(todo.id, dispatch);
+        return (
+          <TodoItem
+            key={todo.id}
+            todo={todo}
+            onToggle={onToggle}
+            onDelete={onDelete}
+          />
+        );
+      })}
+    </ul>
   );
 }
-
-export default TodoList;

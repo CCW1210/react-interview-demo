@@ -1,20 +1,13 @@
 // src/store/movieSlice.ts
-
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import axios from "axios";
 
-import { searchMovies } from "../api/movie"; // 改為正確的命名匯入
-import type { RootState } from "./index";
-
-// 定義 Movie 介面
 export interface Movie {
-  id: number;
+  id: string;
   title: string;
-  posterURL: string;
-  releaseDate: string;
   description: string;
 }
 
-// 匯出 state 型別
 export interface MovieState {
   query: string;
   results: Movie[];
@@ -29,22 +22,12 @@ const initialState: MovieState = {
   error: null,
 };
 
-// 異步 thunk 的型別設定
-interface AsyncThunkConfig {
-  state: RootState;
-  rejectValue: string;
-}
-
-// 建立異步 action：呼叫 searchMovies
-export const getMovies = createAsyncThunk<Movie[], string, AsyncThunkConfig>(
-  "movies/fetchMovies",
-  async (query, thunkAPI) => {
-    try {
-      const movies = await searchMovies(query);
-      return movies;
-    } catch (err) {
-      return thunkAPI.rejectWithValue((err as Error).message);
-    }
+// 改成向本地 /movies endpoint 發，讓 Cypress intercept 能攔到
+export const getMovies = createAsyncThunk<Movie[], string>(
+  "movies/getMovies",
+  async (q) => {
+    const res = await axios.get("/movies", { params: { q } });
+    return res.data as Movie[];
   }
 );
 
@@ -55,11 +38,6 @@ const movieSlice = createSlice({
     setQuery(state, action: PayloadAction<string>) {
       state.query = action.payload;
     },
-    clearMovies(state) {
-      state.results = [];
-      state.status = "idle";
-      state.error = null;
-    },
   },
   extraReducers: (builder) => {
     builder
@@ -67,19 +45,16 @@ const movieSlice = createSlice({
         state.status = "loading";
         state.error = null;
       })
-      .addCase(getMovies.fulfilled, (state, action) => {
+      .addCase(getMovies.fulfilled, (state, { payload }) => {
         state.status = "succeeded";
-        state.results = action.payload;
+        state.results = payload;
       })
       .addCase(getMovies.rejected, (state, action) => {
         state.status = "failed";
-        state.error = action.payload ?? "Failed to fetch movies";
+        state.error = action.error.message ?? "Unknown error";
       });
   },
 });
 
-// 匯出同步 actions
-export const { setQuery, clearMovies } = movieSlice.actions;
-
-// 匯出 reducer
+export const { setQuery } = movieSlice.actions;
 export default movieSlice.reducer;

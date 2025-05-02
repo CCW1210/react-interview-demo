@@ -15,7 +15,7 @@ export default function MovieSearch(): JSX.Element {
   );
   const [input, setInput] = useState<string>(query);
 
-  // 當 query 更新時自動抓一次
+  // query 变了就发起请求
   useEffect(() => {
     if (query) {
       dispatch(getMovies(query));
@@ -25,7 +25,6 @@ export default function MovieSearch(): JSX.Element {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     dispatch(setQuery(input));
-    dispatch(getMovies(input));
   }
 
   return (
@@ -45,17 +44,19 @@ export default function MovieSearch(): JSX.Element {
           搜尋
         </button>
       </form>
-      <div className="movie-search-grid">
-        {status === "loading" && <p>載入中...</p>}
-        {status === "failed" && <p>錯誤：{error}</p>}
-        {status === "succeeded" &&
-          results.map((m: Movie) => (
-            <article key={m.id} className="movie-search-card">
+
+      {status === "loading" && <p>載入中…</p>}
+      {status === "failed" && <p>錯誤：{error}</p>}
+      {status === "succeeded" && (
+        <ul className="movie-search-list">
+          {results.map((m: Movie) => (
+            <li key={m.id} className="movie-search-item">
               <h3>{m.title}</h3>
               <p>{m.description}</p>
-            </article>
+            </li>
           ))}
-      </div>
+        </ul>
+      )}
     </section>
   );
 }

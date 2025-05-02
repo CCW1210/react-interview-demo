@@ -24,7 +24,7 @@ export function TodoInput({ onAdd }: TodoInputProps) {
     <form className="container" onSubmit={handleSubmit}>
       <input
         type="text"
-        className="field"
+        className="field todo-input"
         placeholder="輸入待辦事項"
         value={text}
         onChange={(e) => setText(e.target.value)}

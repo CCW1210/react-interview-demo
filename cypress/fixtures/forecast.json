@@ -1,0 +1,29 @@
+{
+  "daily": [
+    {
+      "dt": 1,
+      "temp": { "max": 10, "min": 5 },
+      "weather": [{ "id": 800, "main": "晴", "description": "", "icon": "" }]
+    },
+    {
+      "dt": 2,
+      "temp": { "max": 11, "min": 6 },
+      "weather": [{ "id": 801, "main": "多雲", "description": "", "icon": "" }]
+    },
+    {
+      "dt": 3,
+      "temp": { "max": 12, "min": 7 },
+      "weather": [{ "id": 802, "main": "陰", "description": "", "icon": "" }]
+    },
+    {
+      "dt": 4,
+      "temp": { "max": 13, "min": 8 },
+      "weather": [{ "id": 803, "main": "雨", "description": "", "icon": "" }]
+    },
+    {
+      "dt": 5,
+      "temp": { "max": 14, "min": 9 },
+      "weather": [{ "id": 804, "main": "雪", "description": "", "icon": "" }]
+    }
+  ]
+}
