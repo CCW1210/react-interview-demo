@@ -38,7 +38,9 @@
    專案使用 Financial Modeling Prep API 取得大宗商品價格，請建立 `.env` 檔並填入：
 
    ```env
-   VITE_FMP_API_KEY=LNIvuJsrrMkCXmWMoKT1gET4dRFhFuMB
+ VITE_FMP_API_KEY=LNIvuJsrrMkCXmWMoKT1gET4dRFhFuMB
+ VITE_OPENWEATHER_API_KEY=4eede336e2ea0989340f780f50a6475c
+
    ```
 
 4. **啟動開發伺服器**

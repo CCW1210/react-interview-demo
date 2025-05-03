@@ -1,5 +1,6 @@
-import { useCallback, useEffect, useState } from "react";
 import "./WeatherDashboard.scss";
+
+import { useCallback, useEffect, useState } from "react";
 
 import type { DailyForecast } from "../../api/weather";
 import { fetchCoordinates, fetchFiveDayForecast } from "../../api/weather";
@@ -101,37 +102,50 @@ export default function WeatherDashboard() {
         </div>
 
         <div className="weather-dashboard-result">
-          {error ? (
-            <div className="weather-error" role="alert">
-              <span className="error-icon">⚠️</span>
-              <p>{error}</p>
-            </div>
-          ) : loading ? (
-            <div className="weather-loading" role="status">
-              <p>正在獲取天氣資訊...</p>
-            </div>
-          ) : (
-            <div className="weather-dashboard-grid">
-              {list.map((item) => (
-                <article key={item.dt} className="weather-dashboard-card">
-                  <time className="weather-dashboard-date" dateTime={new Date(item.dt * 1000).toISOString()}>
-                    {formatDate(item.dt)}
-                  </time>
-                  <div className="weather-icon">
-                    {getWeatherIcon(item.weather[0].icon)}
-                  </div>
-                  <p className="weather-dashboard-temp">
-                    最高：{Math.round(item.temp.max)}°C
-                    <br />
-                    最低：{Math.round(item.temp.min)}°C
-                  </p>
-                  <p className="weather-dashboard-desc">
-                    {item.weather[0].description}
-                  </p>
-                </article>
-              ))}
-            </div>
-          )}
+          {(() => {
+            if (error) {
+              return (
+                <div className="weather-error" role="alert">
+                  <span className="error-icon">⚠️</span>
+                  <p>{error}</p>
+                </div>
+              );
+            }
+
+            if (loading) {
+              return (
+                <div className="weather-loading" role="status">
+                  <p>正在獲取天氣資訊...</p>
+                </div>
+              );
+            }
+
+            return (
+              <div className="weather-dashboard-grid">
+                {list.map((item) => (
+                  <article key={item.dt} className="weather-dashboard-card">
+                    <time
+                      className="weather-dashboard-date"
+                      dateTime={new Date(item.dt * 1000).toISOString()}
+                    >
+                      {formatDate(item.dt)}
+                    </time>
+                    <div className="weather-icon">
+                      {getWeatherIcon(item.weather[0].icon)}
+                    </div>
+                    <p className="weather-dashboard-temp">
+                      最高：{Math.round(item.temp.max)}°C
+                      <br />
+                      最低：{Math.round(item.temp.min)}°C
+                    </p>
+                    <p className="weather-dashboard-desc">
+                      {item.weather[0].description}
+                    </p>
+                  </article>
+                ))}
+              </div>
+            );
+          })()}
         </div>
       </div>
     </section>

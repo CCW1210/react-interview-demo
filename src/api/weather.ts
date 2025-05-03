@@ -22,6 +22,20 @@ export interface DailyForecast {
   }>;
 }
 
+export interface ForecastItem {
+  dt: number;
+  main: {
+    temp_min: number;
+    temp_max: number;
+  };
+  weather: Array<{
+    id: number;
+    main: string;
+    description: string;
+    icon: string;
+  }>;
+}
+
 export async function fetchCoordinates(city: string): Promise<Coordinates> {
   try {
     const response = await axios.get(
@@ -55,27 +69,35 @@ export async function fetchFiveDayForecast(
 
     // 將 3 小時間隔的數據轉換為每日數據
     const dailyData: { [key: string]: DailyForecast } = {};
-    
-    response.data.list.forEach((item: any) => {
+
+    response.data.list.forEach((item: ForecastItem) => {
       const date = new Date(item.dt * 1000).toDateString();
       if (!dailyData[date]) {
         dailyData[date] = {
           dt: item.dt,
           temp: {
             min: item.main.temp_min,
-            max: item.main.temp_max
+            max: item.main.temp_max,
           },
-          weather: [{
-            id: item.weather[0].id,
-            main: item.weather[0].main,
-            description: item.weather[0].description,
-            icon: item.weather[0].icon
-          }]
+          weather: [
+            {
+              id: item.weather[0].id,
+              main: item.weather[0].main,
+              description: item.weather[0].description,
+              icon: item.weather[0].icon,
+            },
+          ],
         };
       } else {
         // 更新最高溫和最低溫
-        dailyData[date].temp.min = Math.min(dailyData[date].temp.min, item.main.temp_min);
-        dailyData[date].temp.max = Math.max(dailyData[date].temp.max, item.main.temp_max);
+        dailyData[date].temp.min = Math.min(
+          dailyData[date].temp.min,
+          item.main.temp_min
+        );
+        dailyData[date].temp.max = Math.max(
+          dailyData[date].temp.max,
+          item.main.temp_max
+        );
       }
     });
 

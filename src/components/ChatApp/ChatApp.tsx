@@ -18,11 +18,14 @@ export default function ChatApp(): JSX.Element {
   const endRef = useRef<HTMLDivElement | null>(null);
   const messageIdRef = useRef(0);
 
-  const createMessage = (sender: "me" | "server", text: string): Message => ({
-    id: `${++messageIdRef.current}`,
-    sender,
-    text,
-  });
+  const createMessage = (sender: "me" | "server", text: string): Message => {
+    messageIdRef.current += 1;
+    return {
+      id: `${messageIdRef.current}`,
+      sender,
+      text,
+    };
+  };
 
   useEffect(() => {
     const sock = new WebSocket("wss://echo.websocket.events");

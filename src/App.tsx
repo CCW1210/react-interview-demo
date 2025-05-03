@@ -9,9 +9,9 @@ import MovieSearch from "./components/MovieSearch/MovieSearch";
 import WeatherDashboard from "./components/WeatherDashboard/WeatherDashboard";
 import TodoPage from "./pages/TodoPage";
 
-const AppContent = () => {
+function AppContent() {
   const location = useLocation();
-  const showHomeButton = location.pathname !== '/';
+  const showHomeButton = location.pathname !== "/";
 
   return (
     <>
@@ -27,7 +27,7 @@ const AppContent = () => {
       {showHomeButton && <HomeButton />}
     </>
   );
-};
+}
 
 export default function App() {
   return (

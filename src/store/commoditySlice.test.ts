@@ -1,37 +1,43 @@
 import { AnyAction } from "@reduxjs/toolkit";
 
-import type { CommodityPrice } from "../api/commodity";
-import reducer, { CommodityState, getCommodityPrices } from "./commoditySlice";
+import reducer, {
+  CommodityState,
+  fetchCommodityQuotes,
+} from "./commoditySlice";
 
 describe("commoditySlice", () => {
-  const initial: CommodityState = { data: [], status: "idle", error: null };
+  const initial: CommodityState = {
+    quotes: [],
+    historicalData: {},
+    selectedSymbol: "GCUSD",
+    loading: false,
+    error: null,
+  };
 
   it("should handle pending", () => {
-    const action = { type: getCommodityPrices.pending.type } as AnyAction;
+    const action = { type: fetchCommodityQuotes.pending.type } as AnyAction;
     const state = reducer(initial, action);
-    expect(state.status).toBe("loading");
+    expect(state.loading).toBe(true);
   });
 
   it("should handle fulfilled", () => {
-    const prices: CommodityPrice[] = [
-      { symbol: "GOLD", price: 100, timestamp: "t1" },
-    ];
+    const prices = [{ symbol: "GOLD", price: 100, timestamp: Date.now() }];
     const action = {
-      type: getCommodityPrices.fulfilled.type,
+      type: fetchCommodityQuotes.fulfilled.type,
       payload: prices,
     } as AnyAction;
     const state = reducer(initial, action);
-    expect(state.data).toEqual(prices);
-    expect(state.status).toBe("idle");
+    expect(state.quotes).toEqual(prices);
+    expect(state.loading).toBe(false);
   });
 
   it("should handle rejected", () => {
     const action = {
-      type: getCommodityPrices.rejected.type,
+      type: fetchCommodityQuotes.rejected.type,
       error: { message: "err" },
     } as AnyAction;
     const state = reducer(initial, action);
     expect(state.error).toBe("err");
-    expect(state.status).toBe("failed");
+    expect(state.loading).toBe(false);
   });
 });

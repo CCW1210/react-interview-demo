@@ -28,3 +28,8 @@ project-structure.txt
 
 # 忽略 Cypress 的截圖
 cypress/screenshots/
+
+# 忽略 TypeScript 生成的聲明文件
+*.d.ts
+!vite-env.d.ts
+!global.d.ts

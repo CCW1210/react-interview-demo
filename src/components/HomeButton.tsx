@@ -1,5 +1,5 @@
-import { useNavigate } from 'react-router-dom';
-import styled, { keyframes } from 'styled-components';
+import { useNavigate } from "react-router-dom";
+import styled, { keyframes } from "styled-components";
 
 const rotate = keyframes`
   from {
@@ -44,19 +44,16 @@ const StyledHomeButton = styled.button`
   }
 `;
 
-const HomeButton = () => {
+function HomeButton() {
   const navigate = useNavigate();
 
   return (
-    <StyledHomeButton
-      onClick={() => navigate('/')}
-      aria-label="返回首頁"
-    >
+    <StyledHomeButton onClick={() => navigate("/")} aria-label="返回首頁">
       <span className="home-icon" role="img" aria-hidden="true">
         🏠
       </span>
     </StyledHomeButton>
   );
-};
+}
 
-export default HomeButton; 
+export default HomeButton;

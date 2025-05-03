@@ -65,7 +65,7 @@ export function TodoPage() {
   return (
     <div className="todo-page page-container">
       <Link to="/" className="back-home-button">
-        <span className="back-icon"></span>
+        <span className="back-icon" />
       </Link>
 
       <div className="page-header">

@@ -13,7 +13,7 @@ export interface Quote {
   name?: string;
 }
 
-interface CommodityState {
+export interface CommodityState {
   quotes: Quote[];
   historicalData: Record<string, { date: string; price: number }[]>;
   selectedSymbol: string;
