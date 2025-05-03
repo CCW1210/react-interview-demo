@@ -1,4 +1,3 @@
-
 @use '../../styles/variables' as vars;
 @use 'sass:math';
 @use 'sass:color' as color;
@@ -43,7 +42,7 @@
     transition: background-color 0.2s;
     
     &:hover {
-      background-color: darken(vars.$primary-color, 10%);
+      background-color: color.adjust(vars.$primary-color, $lightness: -10%);
     }
   }
 }

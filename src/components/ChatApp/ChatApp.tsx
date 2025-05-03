@@ -13,18 +13,41 @@ interface Message {
 export default function ChatApp(): JSX.Element {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
+  const [isConnected, setIsConnected] = useState(false);
   const wsRef = useRef<WebSocket | null>(null);
   const endRef = useRef<HTMLDivElement | null>(null);
+  const messageIdRef = useRef(0);
+
+  const createMessage = (sender: "me" | "server", text: string): Message => ({
+    id: `${++messageIdRef.current}`,
+    sender,
+    text,
+  });
 
   useEffect(() => {
     const sock = new WebSocket("wss://echo.websocket.events");
     wsRef.current = sock;
-    sock.addEventListener("message", (ev) => {
+
+    sock.addEventListener("open", () => {
+      setIsConnected(true);
       setMessages((prev) => [
         ...prev,
-        { id: Date.now().toString(), sender: "server", text: ev.data },
+        createMessage(
+          "server",
+          "已連接到聊天室，這是一個回音測試服務，您發送的訊息會被伺服器回傳。"
+        ),
       ]);
     });
+
+    sock.addEventListener("message", (ev) => {
+      setMessages((prev) => [...prev, createMessage("server", ev.data)]);
+    });
+
+    sock.addEventListener("close", () => {
+      setIsConnected(false);
+      setMessages((prev) => [...prev, createMessage("server", "連接已斷開")]);
+    });
+
     return () => sock.close();
   }, []);
 
@@ -36,14 +59,9 @@ export default function ChatApp(): JSX.Element {
     const text = input.trim();
     if (!text) return;
 
-    // **第�?件�?**：�??�自己�?訊息 push ??state
-    setMessages((prev) => [
-      ...prev,
-      { id: Date.now().toString(), sender: "me", text },
-    ]);
+    setMessages((prev) => [...prev, createMessage("me", text)]);
     setInput("");
 
-    // **??*?�給伺�???
     if (wsRef.current?.readyState === WebSocket.OPEN) {
       wsRef.current.send(text);
     }
@@ -51,9 +69,7 @@ export default function ChatApp(): JSX.Element {
 
   return (
     <section className="chat-app">
-      <Link to="/" className="back-home-link">
-        ??返�?首�?
-      </Link>
+      <Link to="/" className="back-home-button" aria-label="返回首頁" />
 
       <div className="chat-app-messages">
         {messages.map((m) => (
@@ -71,7 +87,7 @@ export default function ChatApp(): JSX.Element {
         <input
           type="text"
           className="chat-app-input"
-          placeholder="輸入訊息後�? Enter ?��??�送出"
+          placeholder="輸入訊息後按 Enter 或點擊發送按鈕"
           aria-label="輸入訊息"
           value={input}
           onChange={(e) => setInput(e.target.value)}
@@ -86,8 +102,9 @@ export default function ChatApp(): JSX.Element {
           type="button"
           className="chat-app-send-button"
           onClick={sendMessage}
+          disabled={!isConnected}
         >
-          ?�出
+          發送
         </button>
       </div>
     </section>

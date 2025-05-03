@@ -123,9 +123,7 @@ export default function ExpenseTracker(): JSX.Element {
 
   return (
     <div className="expense-page page-container">
-      <Link to="/" className="back-home-button">
-        <span className="back-icon">←</span> 返回首頁
-      </Link>
+      <Link to="/" className="back-home-button" aria-label="返回首頁" />
 
       <div className="page-header">
         <h1>收支管理</h1>

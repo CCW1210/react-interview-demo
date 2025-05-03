@@ -30,9 +30,7 @@ export default function MovieSearch(): JSX.Element {
 
   return (
     <section className="movie-search">
-      <Link className="back-home-link" to="/">
-        ← 返回首頁
-      </Link>
+      <Link to="/" className="back-home-button" aria-label="返回首頁" />
       <h2 className="movie-search-title">電影搜尋（SampleAPIs 版）</h2>
       <form className="movie-search-form" onSubmit={handleSubmit}>
         <input

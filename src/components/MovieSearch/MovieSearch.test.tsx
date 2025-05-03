@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { useDispatch, useSelector } from "react-redux";
-import { MemoryRouter } from "react-router-dom";
+import { Link, MemoryRouter } from "react-router-dom";
 
 import { getMovies, setQuery } from "../../store/movieSlice";
 import MovieSearch from "./MovieSearch";
@@ -39,6 +39,9 @@ describe("MovieSearch", () => {
   it("輸入關鍵字並點擊「搜尋」會調用 setQuery 和 getMovies", () => {
     render(
       <MemoryRouter>
+        <Link to="/" className="back-home-button">
+          <span className="back-icon">←</span> 返回首頁
+        </Link>
         <MovieSearch />
       </MemoryRouter>
     );

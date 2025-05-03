@@ -1,4 +1,5 @@
 import "./CommodityMonitor.scss";
+import "../../styles/common.scss";
 
 import {
   CategoryScale,
@@ -13,6 +14,7 @@ import {
 } from "chart.js";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Line } from "react-chartjs-2";
+import { Link } from "react-router-dom";
 
 ChartJS.register(
   Title,
@@ -269,6 +271,7 @@ export default function CommodityMonitor() {
 
   return (
     <div className="commodity-monitor">
+      <Link to="/" className="back-home-button" aria-label="返回首頁" />
       <div className="monitor-header">
         <h2 className="monitor-title">大宗商品即時報價</h2>
         <button
