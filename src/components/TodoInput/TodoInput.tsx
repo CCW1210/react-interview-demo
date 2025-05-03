@@ -20,17 +20,19 @@ export default function TodoInput({ onAdd }: TodoInputProps): JSX.Element {
   }
 
   return (
-    <form className="container" onSubmit={handleSubmit}>
-      <input
-        type="text"
-        className="field todo-input"
-        placeholder="輸入待辦事項"
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-      />
-      <button type="submit" className="btn">
-        新增
-      </button>
+    <form className="todo-input-container" onSubmit={handleSubmit}>
+      <div className="input-wrapper">
+        <input
+          type="text"
+          className="todo-input-field"
+          placeholder="新增一個待辦事項..."
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        />
+        <button type="submit" className="todo-add-button">
+          新增
+        </button>
+      </div>
     </form>
   );
 }

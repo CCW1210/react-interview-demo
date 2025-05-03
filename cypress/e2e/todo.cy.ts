@@ -21,4 +21,22 @@
 
     cy.get(".todo-item").should("not.exist");
   });
+  
+  it("重新整理後應該保留待辦事項", () => {
+    // 新增待辦事項
+    const todoText = "需要保存的待辦事項";
+    cy.get("input[placeholder='輸入待辦事項']").type(todoText);
+    cy.contains("button", "新增").click();
+    
+    // 重新整理頁面
+    cy.reload();
+    
+    // 確認待辦事項仍然存在
+    cy.contains(".todo-item", todoText).should("be.visible");
+    
+    // 清理：刪除測試用的待辦事項
+    cy.contains(".todo-item", todoText)
+      .find("button.todo-item-delete-button")
+      .click();
+  });
 });

@@ -1,0 +1,5 @@
+[
+  { "symbol": "GOLD", "price": 1800, "timestamp": "2025-04-01T10:00:00Z" },
+  { "symbol": "GOLD", "price": 1810, "timestamp": "2025-04-01T11:00:00Z" },
+  { "symbol": "GOLD", "price": 1795, "timestamp": "2025-04-01T12:00:00Z" }
+]

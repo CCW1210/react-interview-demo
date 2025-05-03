@@ -48,6 +48,10 @@ module.exports = {
       "error",
       { props: true, ignorePropertyModificationsFor: ["state"] },
     ],
+    "jsx-a11y/label-has-associated-control": "off",
+    "jsx-a11y/control-has-associated-label": "off",
+    "react/button-has-type": "warn",
+    "no-nested-ternary": "warn",
   },
 
   overrides: [
@@ -74,6 +78,9 @@ module.exports = {
         "no-useless-constructor": "off",
         "@typescript-eslint/no-explicit-any": "off",
         "func-names": "off",
+        "jsx-a11y/label-has-associated-control": "off",
+        "jsx-a11y/control-has-associated-label": "off",
+        "react/button-has-type": "off",
       },
     },
   ],

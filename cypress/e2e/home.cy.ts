@@ -13,6 +13,7 @@ describe("Home 頁面", () => {
       "電影搜尋",
       "收支管理",
       "即時聊天室",
+      "大宗商品即時報價"
     ];
     texts.forEach((t) => {
       cy.contains(t).should("be.visible");
@@ -38,5 +39,9 @@ describe("Home 頁面", () => {
 
     cy.contains("即時聊天室").click();
     cy.url().should("include", "/chatApp");
+    cy.go("back");
+    
+    cy.contains("大宗商品即時報價").click();
+    cy.url().should("include", "/commodityMonitor");
   });
 });

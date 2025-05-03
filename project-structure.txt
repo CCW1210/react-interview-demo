@@ -1,20 +1,29 @@
 C:\Users\KHUser\Desktop\2025面試\Welhunt\react-interview
+├── .env
 ├── .eslintrc.cjs
 ├── .gitignore
 ├── .prettierrc
 ├── cypress
 |  ├── e2e
 |  |  ├── chat.cy.ts
+|  |  ├── commodity.cy.ts
 |  |  ├── expense.cy.ts
 |  |  ├── home.cy.ts
 |  |  ├── movie.cy.ts
 |  |  ├── todo.cy.ts
 |  |  └── weather.cy.ts
 |  ├── fixtures
+|  |  ├── commodity.json
 |  |  ├── coords.json
 |  |  ├── forecast.json
 |  |  └── movies.json
 |  ├── screenshots
+|  |  ├── commodity.cy.ts
+|  |  |  ├── Commodity Monitor E2E -- 應該顯示商品卡片 (failed).png
+|  |  |  ├── Commodity Monitor E2E -- 應該顯示折線圖 (failed).png
+|  |  |  └── Commodity Monitor E2E -- 點擊商品卡片後應顯示詳細資訊 (failed).png
+|  |  └── expense.cy.ts
+|  |     └── ExpenseTracker 功能測試 -- 正確計算合計金額 (failed).png
 |  └── support
 |     └── index.ts
 ├── cypress.config.js
@@ -27,8 +36,10 @@ C:\Users\KHUser\Desktop\2025面試\Welhunt\react-interview
 ├── public
 |  └── vite.svg
 ├── README.md
+├── remove-path-comments.ps1
 ├── src
 |  ├── api
+|  |  ├── commodity.ts
 |  |  ├── movie.ts
 |  |  ├── storage.ts
 |  |  └── weather.ts
@@ -41,6 +52,9 @@ C:\Users\KHUser\Desktop\2025面試\Welhunt\react-interview
 |  |  |  ├── ChatApp.scss
 |  |  |  ├── ChatApp.test.tsx
 |  |  |  └── ChatApp.tsx
+|  |  ├── CommodityMonitor
+|  |  |  ├── CommodityMonitor.scss
+|  |  |  └── CommodityMonitor.tsx
 |  |  ├── ExpenseTracker
 |  |  |  ├── ExpenseTracker.scss
 |  |  |  ├── ExpenseTracker.test.tsx
@@ -70,15 +84,19 @@ C:\Users\KHUser\Desktop\2025面試\Welhunt\react-interview
 |  ├── index.scss
 |  ├── main.tsx
 |  ├── pages
+|  |  ├── TodoPage.scss
 |  |  ├── TodoPage.test.tsx
 |  |  └── TodoPage.tsx
 |  ├── setupTests.ts
 |  ├── store
+|  |  ├── commoditySlice.test.ts
+|  |  ├── commoditySlice.ts
 |  |  ├── expenseSlice.ts
 |  |  ├── index.ts
 |  |  ├── movieSlice.ts
 |  |  └── todoSlice.ts
 |  ├── styles
+|  |  ├── common.scss
 |  |  └── _variables.scss
 |  ├── test-utils
 |  |  └── renderWithProviders.tsx
@@ -89,6 +107,6 @@ C:\Users\KHUser\Desktop\2025面試\Welhunt\react-interview
 ├── tsconfig.node.json
 └── vite.config.ts
 
-directory: 3029 file: 16879
+directory: 4034 file: 19496
 
-ignored: directory (75)
+ignored: directory (79)

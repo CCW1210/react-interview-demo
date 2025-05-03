@@ -1,8 +1,6 @@
-// src/api/movie.ts
-
 import axios from "axios";
 
-// 定義我們要的欄位
+// 定義?�們�??��?�?
 export interface Movie {
   id: number;
   title: string;
@@ -12,9 +10,9 @@ export interface Movie {
 }
 
 /**
- * 免 Key 的 SampleAPIs 版本搜尋：
- * 先一次把 action 類型的電影拉下來，
- * 再用 title 做前端過濾
+ * ??Key ??SampleAPIs ?�本?��?�?
+ * ?��?次�? action 類�??�電影�?下�?�?
+ * ?�用 title ?��?端�?�?
  */
 export async function searchMovies(query: string): Promise<Movie[]> {
   const res = await axios.get<Movie[]>(

@@ -1,4 +1,3 @@
-// src/setupTests.ts
 import "@testing-library/jest-dom";
 
 import {
@@ -6,7 +5,7 @@ import {
   TextEncoder as NodeTextEncoder,
 } from "util";
 
-// Polyfill TextEncoder/TextDecoder（Node.js 環境）
+// Polyfill TextEncoder/TextDecoder（Node.js ?��?�?
 if (typeof (global as any).TextEncoder === "undefined") {
   (global as any).TextEncoder = NodeTextEncoder;
 }
@@ -14,12 +13,12 @@ if (typeof (global as any).TextDecoder === "undefined") {
   (global as any).TextDecoder = NodeTextDecoder;
 }
 
-// Polyfill scrollIntoView（JSDOM 不實作）
+// Polyfill scrollIntoView（JSDOM 不實作�?
 window.HTMLElement.prototype.scrollIntoView = function (): void {
   // no-op
 };
 
-// 完整 mock 全域 WebSocket，符合標準介面
+// 完整 mock ?��? WebSocket，符?��?準�???
 class MockWebSocket {
   static CONNECTING = 0;
 
@@ -74,5 +73,5 @@ class MockWebSocket {
   }
 }
 
-// 經過 unknown 再轉回 typeof WebSocket，避開 TS 類型衝突
+// 經�? unknown ?��???typeof WebSocket，避??TS 類�?衝�?
 (global as any).WebSocket = MockWebSocket as unknown as typeof WebSocket;

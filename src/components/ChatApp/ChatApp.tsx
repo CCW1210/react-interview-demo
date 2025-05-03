@@ -1,4 +1,3 @@
-// src/components/ChatApp/ChatApp.tsx
 import "./ChatApp.scss";
 
 import type { JSX } from "react";
@@ -37,14 +36,14 @@ export default function ChatApp(): JSX.Element {
     const text = input.trim();
     if (!text) return;
 
-    // **第一件事**：先把自己的訊息 push 進 state
+    // **第�?件�?**：�??�自己�?訊息 push ??state
     setMessages((prev) => [
       ...prev,
       { id: Date.now().toString(), sender: "me", text },
     ]);
     setInput("");
 
-    // **再**送給伺服器
+    // **??*?�給伺�???
     if (wsRef.current?.readyState === WebSocket.OPEN) {
       wsRef.current.send(text);
     }
@@ -53,7 +52,7 @@ export default function ChatApp(): JSX.Element {
   return (
     <section className="chat-app">
       <Link to="/" className="back-home-link">
-        ← 返回首頁
+        ??返�?首�?
       </Link>
 
       <div className="chat-app-messages">
@@ -72,7 +71,7 @@ export default function ChatApp(): JSX.Element {
         <input
           type="text"
           className="chat-app-input"
-          placeholder="輸入訊息後按 Enter 或點擊送出"
+          placeholder="輸入訊息後�? Enter ?��??�送出"
           aria-label="輸入訊息"
           value={input}
           onChange={(e) => setInput(e.target.value)}
@@ -88,7 +87,7 @@ export default function ChatApp(): JSX.Element {
           className="chat-app-send-button"
           onClick={sendMessage}
         >
-          送出
+          ?�出
         </button>
       </div>
     </section>

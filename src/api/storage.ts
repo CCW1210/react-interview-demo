@@ -1,7 +1,5 @@
-// src/api/storage.ts
-
 /**
- * Todo 型別
+ * Todo ?�別
  */
 export interface Todo {
   id: string;
@@ -19,7 +17,7 @@ export function loadItem<T>(key: string): T | undefined {
       return JSON.parse(json) as T;
     }
   } catch {
-    // 忽略解析錯誤
+    // 忽略�???�誤
   }
   return undefined;
 }
@@ -31,19 +29,19 @@ export function saveItem<T>(key: string, data: T): void {
   try {
     localStorage.setItem(key, JSON.stringify(data));
   } catch {
-    // 忽略存入錯誤
+    // 忽略存入?�誤
   }
 }
 
 /**
- * 載入所有 Todo
+ * 載入?�??Todo
  */
 export function loadTodos(): Todo[] {
   return loadItem<Todo[]>("todos") ?? [];
 }
 
 /**
- * 儲存所有 Todo
+ * ?��??�??Todo
  */
 export function saveTodos(todos: Todo[]): void {
   saveItem<Todo[]>("todos", todos);

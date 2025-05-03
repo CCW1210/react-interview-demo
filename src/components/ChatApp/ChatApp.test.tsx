@@ -30,12 +30,10 @@ describe("ChatApp", () => {
         }, 10);
       }
 
-      // eslint-disable-next-line class-methods-use-this
       send(): void {
         // 模擬訊息傳送，測試用
       }
 
-      // eslint-disable-next-line class-methods-use-this
       close(): void {
         // 模擬關閉連線，測試用
       }

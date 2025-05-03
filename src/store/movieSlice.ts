@@ -1,4 +1,3 @@
-// src/store/movieSlice.ts
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -22,7 +21,7 @@ const initialState: MovieState = {
   error: null,
 };
 
-// 改成向本地 /movies endpoint 發，讓 Cypress intercept 能攔到
+// ?��??�本??/movies endpoint ?��?�?Cypress intercept ?��???
 export const getMovies = createAsyncThunk<Movie[], string>(
   "movies/getMovies",
   async (q) => {

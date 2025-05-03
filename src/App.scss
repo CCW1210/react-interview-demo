@@ -1,10 +1,9 @@
-// src/App.scss
 
 @use './styles/_variables' as vars;
 @use 'sass:color';
 @use 'sass:math';
 
-/* 1. 重設盒模型與基礎字體 */
+/* 1. ?�設?�模?��??��?字�? */
 * {
   box-sizing: border-box;
 }
@@ -17,19 +16,19 @@ body {
   color: vars.$text-color;
 }
 
-/* 2. App 主容器 */
+/* 2. App 主容?? */
 .app {
   max-width: 1024px;
   margin: 0 auto;
   padding: vars.$spacing;
 }
 
-/* 3. 各頁面內部容器 */
+/* 3. ?��??�內?�容?? */
 .app-container {
   padding: vars.$spacing;
 }
 
-/* 4. 返回首頁連結 */
+/* 4. 返�?首�???? */
 .back-home-link {
   display: inline-block;
   margin-bottom: vars.$spacing;
@@ -41,7 +40,7 @@ body {
   }
 }
 
-/* 5. 全域按鈕/連結樣式示例 */
+/* 5. ?��??��?/???�??示�? */
 .link {
   color: vars.$primary-color;
   text-decoration: none;
@@ -51,5 +50,5 @@ body {
   }
 }
 
-/* 6. 其他你原本在 App.scss 裡的全域樣式，也請一併把
-   $spacing、$primary-color、$text-color 換成 vars.$XXX */
+/* 6. ?��?你�??�在 App.scss 裡�??��?�??，�?請�?併�?
+   $spacing??primary-color??text-color ?��? vars.$XXX */

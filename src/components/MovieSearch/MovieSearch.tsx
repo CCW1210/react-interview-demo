@@ -26,8 +26,6 @@ export default function MovieSearch(): JSX.Element {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     dispatch(setQuery(input));
-    // 單元測試會檢查這一行
-    dispatch(getMovies(input));
   }
 
   return (

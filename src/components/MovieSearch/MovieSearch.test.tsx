@@ -1,4 +1,3 @@
-// src/components/MovieSearch/MovieSearch.test.tsx
 import { fireEvent, render, screen } from "@testing-library/react";
 import { useDispatch, useSelector } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
@@ -26,7 +25,7 @@ describe("MovieSearch", () => {
   const mockDispatch = jest.fn();
 
   beforeEach(() => {
-    // 先斷言為 unknown，再轉成 jest.Mock
+    // 將斷言為unknown，再轉為 jest.Mock
     (useDispatch as unknown as jest.Mock).mockReturnValue(mockDispatch);
     (useSelector as unknown as jest.Mock).mockReturnValue({
       query: "",
@@ -37,7 +36,7 @@ describe("MovieSearch", () => {
     jest.clearAllMocks();
   });
 
-  it("輸入關鍵字並點擊「搜尋」會呼叫 setQuery 和 getMovies", () => {
+  it("輸入關鍵字並點擊「搜尋」會調用 setQuery 和 getMovies", () => {
     render(
       <MemoryRouter>
         <MovieSearch />

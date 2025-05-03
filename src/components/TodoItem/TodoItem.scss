@@ -1,36 +1,119 @@
-// src/components/TodoItem/TodoItem.scss
 
 @use '../../styles/variables' as vars;
 @use 'sass:math';
 
-li {
+.todo-item {
   display: flex;
   align-items: center;
-  padding: math.div(vars.$spacing, 2);
-  border-bottom: 1px solid #eee;
-
-  &.done .text {
-    text-decoration: line-through;
-    color: #999;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 1px solid #e2e8f0;
+  transition: all 0.2s;
+  
+  &:hover {
+    background-color: #f8fafc;
   }
-
-  .text {
-    margin-left: math.div(vars.$spacing, 2);
+  
+  &:last-child {
+    border-bottom: none;
+  }
+  
+  &.completed .todo-text {
+    text-decoration: line-through;
+    color: #a0aec0;
+  }
+  
+  .todo-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
     flex: 1;
   }
-
-  .remove {
-    background: transparent;
+  
+  .checkbox-wrapper {
+    position: relative;
+    
+    .todo-checkbox {
+      position: absolute;
+      opacity: 0;
+      height: 0;
+      width: 0;
+      
+      &:checked + .custom-checkbox::after {
+        opacity: 1;
+      }
+    }
+    
+    .custom-checkbox {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 2px solid #cbd5e0;
+      border-radius: 4px;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.2s;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        left: 6px;
+        top: 2px;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+    }
+    
+    .todo-checkbox:checked + .custom-checkbox {
+      background-color: vars.$primary-color;
+      border-color: vars.$primary-color;
+    }
+  }
+  
+  .todo-text {
+    font-size: 1rem;
+    transition: all 0.2s;
+  }
+  
+  .todo-delete-button {
+    background: none;
     border: none;
-    font-size: 1.2rem;
-    color: #e53935;
+    color: #cbd5e0;
+    font-size: 1.3rem;
     cursor: pointer;
-    padding: 0 math.div(vars.$spacing, 4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    transition: all 0.2s;
+    
+    &:hover {
+      background-color: #fee2e2;
+      color: #ef4444;
+    }
   }
 }
 
 @media (width <= 400px) {
-  li {
+  .todo-item {
     font-size: 0.9rem;
   }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }

@@ -1,5 +1,3 @@
-// src/main.tsx
-
 import "./index.scss";
 
 import ReactDOM from "react-dom/client";

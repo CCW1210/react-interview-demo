@@ -1,7 +1,7 @@
-// src/store/index.ts
 import { configureStore } from "@reduxjs/toolkit";
 
 import { saveItem } from "../api/storage";
+import commodityReducer, { CommodityState } from "./commoditySlice";
 import expenseReducer, { ExpenseState } from "./expenseSlice";
 import movieReducer, { MovieState } from "./movieSlice";
 import todoReducer, { TodoState } from "./todoSlice";
@@ -11,6 +11,7 @@ export const store = configureStore({
     movies: movieReducer,
     expenses: expenseReducer,
     todos: todoReducer,
+    commodity: commodityReducer,
   },
 });
 
@@ -21,4 +22,4 @@ store.subscribe(() => {
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-export type { ExpenseState, MovieState, TodoState };
+export type { CommodityState, ExpenseState, MovieState, TodoState };
