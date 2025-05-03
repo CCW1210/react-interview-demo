@@ -1,4 +1,3 @@
-// cypress/e2e/weather.cy.ts
 describe("WeatherDashboard 功能測試", () => {
   beforeEach(() => {
     // 直接拦截请求并返回5个天气卡片的数据
@@ -79,4 +78,4 @@ describe("WeatherDashboard 功能測試", () => {
     cy.wait(1000);
     cy.get(".weather-dashboard-card").should("have.length.at.least", 1);
   });
-});
+}); 

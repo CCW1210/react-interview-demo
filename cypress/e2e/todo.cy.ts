@@ -10,8 +10,8 @@
 
     cy.contains(".todo-item", "寫作業").as("newItem").should("be.visible");
 
-    // 勾選 checkbox
-    cy.get("@newItem").find("input[type='checkbox']").check();
+    // 使用force选项勾选checkbox
+    cy.get("@newItem").find("input[type='checkbox']").check({force: true});
 
     // 項目的 <li> 加上 completed class
     cy.get("@newItem").should("have.class", "completed");

@@ -1,29 +1,29 @@
 {
-  "daily": [
+  "list": [
     {
       "dt": 1,
-      "temp": { "max": 10, "min": 5 },
-      "weather": [{ "id": 800, "main": "晴", "description": "", "icon": "" }]
+      "main": { "temp_max": 10, "temp_min": 5 },
+      "weather": [{ "id": 800, "main": "Clear", "description": "晴天", "icon": "01d" }]
     },
     {
       "dt": 2,
-      "temp": { "max": 11, "min": 6 },
-      "weather": [{ "id": 801, "main": "多雲", "description": "", "icon": "" }]
+      "main": { "temp_max": 11, "temp_min": 6 },
+      "weather": [{ "id": 801, "main": "Clouds", "description": "多雲", "icon": "02d" }]
     },
     {
       "dt": 3,
-      "temp": { "max": 12, "min": 7 },
-      "weather": [{ "id": 802, "main": "陰", "description": "", "icon": "" }]
+      "main": { "temp_max": 12, "temp_min": 7 },
+      "weather": [{ "id": 802, "main": "Clouds", "description": "陰天", "icon": "03d" }]
     },
     {
       "dt": 4,
-      "temp": { "max": 13, "min": 8 },
-      "weather": [{ "id": 803, "main": "雨", "description": "", "icon": "" }]
+      "main": { "temp_max": 13, "temp_min": 8 },
+      "weather": [{ "id": 803, "main": "Rain", "description": "小雨", "icon": "09d" }]
     },
     {
       "dt": 5,
-      "temp": { "max": 14, "min": 9 },
-      "weather": [{ "id": 804, "main": "雪", "description": "", "icon": "" }]
+      "main": { "temp_max": 14, "temp_min": 9 },
+      "weather": [{ "id": 804, "main": "Snow", "description": "小雪", "icon": "13d" }]
     }
   ]
 }

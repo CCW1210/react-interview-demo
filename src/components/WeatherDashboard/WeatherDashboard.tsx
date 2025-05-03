@@ -38,7 +38,7 @@ const getWeatherIcon = (code: string) => {
 };
 
 export default function WeatherDashboard() {
-  const defaultCity = "Kaohsiung";
+  const defaultCity = "Taipei";
   const [city, setCity] = useState(defaultCity);
   const [list, setList] = useState<DailyForecast[]>([]);
   const [error, setError] = useState("");
@@ -85,7 +85,7 @@ export default function WeatherDashboard() {
         <div className="weather-dashboard-search">
           <input
             type="text"
-            placeholder="輸入城市名稱，例如：Kaohsiung"
+            placeholder="輸入城市，例如 Taipei"
             value={city}
             onChange={(e) => setCity(e.target.value)}
             onKeyPress={handleKeyPress}

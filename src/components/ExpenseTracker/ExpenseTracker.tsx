@@ -133,7 +133,9 @@ export default function ExpenseTracker(): JSX.Element {
       <div className="expense-dashboard">
         <div className="expense-summary-card">
           <h3>支出總計</h3>
-          <div className="expense-amount">{formatAmount(total)} 元</div>
+          <div className="expense-amount expense-tracker-summary">
+            {formatAmount(total)} 元
+          </div>
           <div className="expense-filter">
             <label htmlFor="expense-filter">
               當前篩選：
@@ -175,7 +177,7 @@ export default function ExpenseTracker(): JSX.Element {
                 type="text"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                placeholder="例如：午餐、交通費"
+                placeholder="描述"
               />
             </div>
 
@@ -186,7 +188,7 @@ export default function ExpenseTracker(): JSX.Element {
                 type="number"
                 value={amount || ""}
                 onChange={(e) => setAmount(Number(e.target.value))}
-                placeholder="請輸入金額"
+                placeholder="金額"
               />
             </div>
 
@@ -198,7 +200,7 @@ export default function ExpenseTracker(): JSX.Element {
                   type="text"
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
-                  placeholder="例如：餐飲、交通"
+                  placeholder="類別"
                   list="common-categories"
                 />
                 <datalist id="common-categories">
@@ -223,7 +225,7 @@ export default function ExpenseTracker(): JSX.Element {
             </div>
 
             <button type="submit" className="submit-button">
-              新增支出
+              新增
             </button>
           </form>
         </div>

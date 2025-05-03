@@ -29,7 +29,7 @@ export default function TodoItem({ todo, onToggle, onDelete }: TodoItemProps) {
       </div>
       <button
         type="button"
-        className="todo-delete-button"
+        className="todo-item-delete-button"
         onClick={onDelete}
         aria-label="刪除待辦事項"
       >

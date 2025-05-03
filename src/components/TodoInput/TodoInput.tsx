@@ -25,7 +25,7 @@ export default function TodoInput({ onAdd }: TodoInputProps): JSX.Element {
         <input
           type="text"
           className="todo-input-field"
-          placeholder="新增一個待辦事項..."
+          placeholder="輸入待辦事項"
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
